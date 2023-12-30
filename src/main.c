@@ -13,6 +13,7 @@ int main() {
     SetTargetFPS(60);
     //==== Enter ====
     ctx_Inti(ctx);
+    APP_UI_Login_Open(ctx->ctx_UI);
     while (!WindowShouldClose()) {
 
         float dt = GetFrameTime();

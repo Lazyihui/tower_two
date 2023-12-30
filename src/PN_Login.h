@@ -11,7 +11,7 @@ typedef struct PN_Login {
 
 
 //生成
-void PN_Login_Ctor(PN_Login *panel){
+void PN_Login_Spawn(PN_Login *panel){
     panel->btn_Start=GUI_Button_New(Vector2_New(480,270),Vector2_New(160,30),BLACK,GRAY,WHITE,"Login");
 }
 

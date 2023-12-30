@@ -29,6 +29,13 @@ void APP_UI_Draw(CtxUI *ctxUI){
     }
 }
 
+//panel 使panel存在
+void APP_UI_Login_Open(CtxUI *ctxUI){
+    PN_Login *panel = (PN_Login*)calloc(1,sizeof(PN_Login));
+    //这里存在了
+    PN_Login_Spawn(panel);
+    ctxUI->pn_login = panel;
+}
 
 
 #endif
