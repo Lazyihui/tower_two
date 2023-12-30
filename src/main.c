@@ -1,9 +1,9 @@
-
-#include "Ctx.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/raylib.h"
 #include "../include/raymath.h"
+#include "Ctx.h"
+#include "APP_UI.h"
 
 int main() {
 
@@ -24,7 +24,9 @@ int main() {
         ClearBackground(RAYWHITE);
 
         //==== Input ====
-
+if(APP_UI_Login_IsStartClick(ctx->ctx_UI)){
+    APP_UI_Login_Close(ctx->ctx_UI);
+}
         //==== Logic Tick ====
 
         //==== Draw World ====

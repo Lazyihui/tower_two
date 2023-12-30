@@ -19,6 +19,9 @@
         "e_mst.h": "c",
         "c_monster.h": "c",
         "a_ctx.h": "c",
-        "e_input.h": "c"
+        "e_input.h": "c",
+        "stdlib.h": "c",
+        "ctx.h": "c",
+        "app_ui.h": "c"
     }
 }
