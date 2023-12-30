@@ -17,7 +17,11 @@ typedef struct GUI_Button {
 GUI_Button GUI_Button_New(Vector2 pos, Vector2 size, Color bg, Color hoverColor, Color fontColor, const char* txt) {
 
     GUI_Button btn;
-    btn.rect =(Rectangle){.x=pos.x,.y=pos.y,.width=size.x,height=size.y};
+    // btn.rect =(Rectangle){.x=pos.x,.y=pos.y,.width=size.x,height=size.y};
+    btn.rect.height = size.y;
+    btn.rect.width=size.x;
+    btn.rect.x=pos.x;
+    btn.rect.y=pos.y;
     btn.bgColor=bg;
     btn.hoverColor=hoverColor;
     btn.txt=txt ;

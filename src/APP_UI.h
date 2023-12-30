@@ -12,13 +12,15 @@ typedef struct CtxUI
     /* data */
 }CtxUI;
 
-void APP_UI_Free(CtxUI *ctx){
-    if(ctx->pn_login!=NULL){
-        free(ctx->pn_login);
-        ctx->pn_login=NULL;
-    }
-    free(ctx);
-}
+
+// void APP_UI_Free(CtxUI *ctx){
+//     if(ctx->pn_login!=NULL){
+//         free(ctx->pn_login);
+//         ctx->pn_login=NULL;
+//     }
+//     free(ctx);
+// }
+
 
 //画
 void APP_UI_Draw(CtxUI *ctx){
@@ -26,6 +28,7 @@ void APP_UI_Draw(CtxUI *ctx){
         PN_Login_Draw(ctx->pn_login);
     }
 }
+
 
 
 #endif

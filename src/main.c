@@ -27,11 +27,12 @@ int main() {
         //==== Logic Tick ====
 
         //==== Draw World ====
-        DrawCircle(0, 0, 100, RED);
+        // DrawCircle(0, 0, 100, RED);
 
         EndMode2D();
         // ==== Draw UI ====
-
+        APP_UI_Draw(ctx->ctx_UI);
+        
         EndDrawing();
     }
     CloseWindow();
