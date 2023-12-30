@@ -1,0 +1,24 @@
+{
+    "files.associations": {
+        "dientity.h": "c",
+        "raylib.h": "c",
+        "common.h": "c",
+        "controller.h": "c",
+        "context.h": "c",
+        "planeentity.h": "c",
+        "raymath.h": "c",
+        "monsterentity.h": "c",
+        "bulletentity.h": "c",
+        "stdio.h": "c",
+        "inputentity.h": "c",
+        "cameracontroller.h": "c",
+        "uicontroller.h": "c",
+        "cellentity.h": "c",
+        "factory.h": "c",
+        "a_common.h": "c",
+        "e_mst.h": "c",
+        "c_monster.h": "c",
+        "a_ctx.h": "c",
+        "e_input.h": "c"
+    }
+}
