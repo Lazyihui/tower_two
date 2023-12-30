@@ -2,6 +2,7 @@
 #define CTX_H__
 
 #include "APP_UI.h"
+#include "PN_Login.h"
 #include "E_Camera.h"
 #include "../include/raylib.h"
 #include <stdio.h>
@@ -18,7 +19,8 @@ typedef struct Ctx {
     // UI
     CtxUI* ctx_UI;
 
-    //
+    //panel
+    PN_Login *pn_Login;
 
 } Ctx;
 
@@ -33,7 +35,6 @@ void ctx_Inti(Ctx* ctx) {
     CtxUI *ctx_UI = (CtxUI*)calloc(1,sizeof(CtxUI));
     ctx->ctx_UI = ctx_UI;
 
-    //
 }
 
 void ctx_Free(Ctx* ctx) {

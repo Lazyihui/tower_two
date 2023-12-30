@@ -23,9 +23,9 @@ typedef struct CtxUI
 
 
 //画
-void APP_UI_Draw(CtxUI *ctx){
-    if(ctx->pn_login!=NULL){
-        PN_Login_Draw(ctx->pn_login);
+void APP_UI_Draw(CtxUI *ctxUI){
+    if(ctxUI->pn_login!=NULL){
+        PN_Login_Draw(ctxUI->pn_login);
     }
 }
 
