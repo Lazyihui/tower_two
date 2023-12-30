@@ -1,7 +1,10 @@
+#define RAYGUI_IMPLEMENTATION
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/raylib.h"
 #include "../include/raymath.h"
+#include "../include/raygui.h"
+#include "../include/style_candy.h"
 #include "Ctx.h"
 #include "APP_UI.h"
 
@@ -14,6 +17,7 @@ int main() {
     //==== Enter ====
     ctx_Inti(ctx);
     APP_UI_Login_Open(ctx->ctx_UI);
+    GuiLoadStyleCandy();
     while (!WindowShouldClose()) {
 
         float dt = GetFrameTime();
