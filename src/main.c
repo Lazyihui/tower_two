@@ -24,18 +24,30 @@ int main() {
         ClearBackground(RAYWHITE);
 
         //==== Input ====
-if(APP_UI_Login_IsStartClick(ctx->ctx_UI)){
-    APP_UI_Login_Close(ctx->ctx_UI);
-}
+        if (APP_UI_Login_IsStartClick(ctx->ctx_UI)) {
+            APP_UI_Login_Close(ctx->ctx_UI);
+            ctx->gameStatus = GAME_STATUS_GAME;
+        }
         //==== Logic Tick ====
+        if (ctx->gameStatus == GAME_STATUS_LOGIN) {
 
+        } else if (ctx->gameStatus == GAME_STATUS_GAME) {
+        }
         //==== Draw World ====
-        // DrawCircle(0, 0, 100, RED);
+        if (ctx->gameStatus == GAME_STATUS_LOGIN) {
+
+        } else if (ctx->gameStatus == GAME_STATUS_GAME) {
+            // DrawCircle(0, 0, 100, RED);
+        }
 
         EndMode2D();
         // ==== Draw UI ====
-        APP_UI_Draw(ctx->ctx_UI);
-        
+        if (ctx->gameStatus == GAME_STATUS_LOGIN) {
+            APP_UI_Draw(ctx->ctx_UI);
+
+        } else if (ctx->gameStatus == GAME_STATUS_GAME) {
+        }
+
         EndDrawing();
     }
     CloseWindow();

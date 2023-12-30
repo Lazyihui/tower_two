@@ -26,6 +26,9 @@ void APP_UI_Draw(CtxUI* ctxUI) {
     }
 }
 
+//画时间 金钱
+
+
 // panel 使panel存在
 void APP_UI_Login_Open(CtxUI* ctxUI) {
     PN_Login* panel = (PN_Login*)calloc(1, sizeof(PN_Login));
@@ -52,5 +55,7 @@ void APP_UI_Login_Close(CtxUI* ctxUI) {
         ctxUI->pn_login = NULL;
     }
 }
+
+
 
 #endif

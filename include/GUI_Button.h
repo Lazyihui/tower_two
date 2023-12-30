@@ -19,20 +19,19 @@ GUI_Button GUI_Button_New(Vector2 pos, Vector2 size, Color bg, Color hoverColor,
     GUI_Button btn;
     // btn.rect =(Rectangle){.x=pos.x,.y=pos.y,.width=size.x,height=size.y};
     btn.rect.height = size.y;
-    btn.rect.width=size.x;
-    btn.rect.x=pos.x;
-    btn.rect.y=pos.y;
-    btn.bgColor=bg;
-    btn.hoverColor=hoverColor;
-    btn.txt=txt ;
-    btn.fontColor=fontColor;
-    btn.isHover=false   ;
+    btn.rect.width = size.x;
+    btn.rect.x = pos.x;
+    btn.rect.y = pos.y;
+    btn.bgColor = bg;
+    btn.hoverColor = hoverColor;
+    btn.txt = txt;
+    btn.fontColor = fontColor;
+    btn.isHover = false;
     return btn;
 }
 
-
-//是否在里面
-char GUI_Button_IsHover(GUI_Button *btn) {
+// 是否在里面
+char GUI_Button_IsHover(GUI_Button* btn) {
     if (CheckCollisionPointRec(GetMousePosition(), btn->rect)) {
         btn->isHover = true;
         return true;
@@ -42,17 +41,17 @@ char GUI_Button_IsHover(GUI_Button *btn) {
     }
 }
 
-//是否被点击
-char GUI_Button_IsClick(GUI_Button *btn){
-    if(GUI_Button_IsHover(btn)&&IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+// 是否被点击
+char GUI_Button_IsClick(GUI_Button* btn) {
+    if (GUI_Button_IsHover(btn) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
 
-//画button
-void GUI_Button_Draw(GUI_Button *btn) {
+// 画button
+void GUI_Button_Draw(GUI_Button* btn) {
     if (btn->isHover) {
         DrawRectangleRec(btn->rect, btn->hoverColor);
     } else {
@@ -60,6 +59,5 @@ void GUI_Button_Draw(GUI_Button *btn) {
     }
     DrawText(btn->txt, btn->rect.x + 10, btn->rect.y + 10, 20, btn->fontColor);
 }
-
 
 #endif

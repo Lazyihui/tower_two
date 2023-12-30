@@ -22,6 +22,8 @@
         "e_input.h": "c",
         "stdlib.h": "c",
         "ctx.h": "c",
-        "app_ui.h": "c"
+        "app_ui.h": "c",
+        "gui_button.h": "c",
+        "raygui.h": "c"
     }
 }

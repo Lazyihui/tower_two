@@ -4,6 +4,8 @@
 #include "../include/raylib.h"
 #include "../include/raymath.h"
 
+enum GAME_STATUS { GAME_STATUS_LOGIN, GAME_STATUS_GAME, GAME_STATUS_OVER };
+
 Vector2 Vector2_New(float x, float y) {
     Vector2 a;
     a.x = x;
@@ -11,6 +13,11 @@ Vector2 Vector2_New(float x, float y) {
     return a;
 }
 
+//画文字
+void Text_Int(int b, int x, int y, int size, Color color) {
+    const char* a = TextFormat("%d", b);
+    DrawText(a, x, y, size, color);
+}
 
 
 #endif
