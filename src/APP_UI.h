@@ -26,26 +26,15 @@ void APP_UI_Draw(CtxUI* ctxUI) {
     }
 }
 
-//画时间 金钱
-
+// 画时间 金钱
 
 // panel 使panel存在
-void APP_UI_Login_Open(CtxUI* ctxUI) {
+void APP_UI_Login_Open(CtxUI* ctxUI, void (*onClickStartHandle)(void)) {
     PN_Login* panel = (PN_Login*)calloc(1, sizeof(PN_Login));
     // 这里存在了
+    panel->onClickStartHandle = onClickStartHandle;
     PN_Login_Spawn(panel);
     ctxUI->pn_login = panel;
-}
-
-// 点击
-bool APP_UI_Login_IsStartClick(CtxUI* ctxUI) {
-    PN_Login* panel = ctxUI->pn_login;
-    if (panel != NULL) {
-        // 0 or 1
-        return PN_Login_IsStartClick(panel);
-    }
-    // 0
-    return false;
 }
 
 // 关闭panel
@@ -56,7 +45,11 @@ void APP_UI_Login_Close(CtxUI* ctxUI) {
     }
 }
 
-
-
+bool APP_UI_Login_Click(CtxUI* ctxUI) {
+    if (ctxUI->pn_login != NULL) {
+        return ctxUI->pn_login->isClick;
+    }
+    return false;
+}
 
 #endif

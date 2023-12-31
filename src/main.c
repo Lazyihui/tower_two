@@ -8,15 +8,23 @@
 #include "Ctx.h"
 #include "APP_UI.h"
 
-int main() {
+static Ctx* ctx; // 静态区
 
+// 文本区
+void UI_Login_OnClicckStart() {
+    printf("b");
+}
+
+int main() {
+    ctx = (Ctx*)calloc(1, sizeof(Ctx));
     // 16:9
     InitWindow(960, 540, "Draw");
-    Ctx* ctx = (Ctx*)calloc(1, sizeof(Ctx));
     SetTargetFPS(60);
     //==== Enter ====
     ctx_Inti(ctx);
-    APP_UI_Login_Open(ctx->ctx_UI);
+
+    APP_UI_Login_Open(ctx->ctx_UI, &UI_Login_OnClicckStart);
+
     GuiLoadStyleCandy();
     while (!WindowShouldClose()) {
 
@@ -28,7 +36,8 @@ int main() {
         ClearBackground(RAYWHITE);
 
         //==== Input ====
-        if (APP_UI_Login_IsStartClick(ctx->ctx_UI)) {
+
+        if (APP_UI_Login_Click(ctx->ctx_UI)) {
             APP_UI_Login_Close(ctx->ctx_UI);
             ctx->gameStatus = GAME_STATUS_GAME;
         }
