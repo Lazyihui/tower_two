@@ -13,6 +13,8 @@ static Ctx* ctx; // 静态区
 // 文本区
 void UI_Login_OnClicckStart() {
     printf("b");
+     APP_UI_Login_Close(ctx->ctx_UI);
+            ctx->gameStatus = GAME_STATUS_GAME;
 }
 
 int main() {
@@ -37,10 +39,9 @@ int main() {
 
         //==== Input ====
 
-        if (APP_UI_Login_Click(ctx->ctx_UI)) {
-            APP_UI_Login_Close(ctx->ctx_UI);
-            ctx->gameStatus = GAME_STATUS_GAME;
-        }
+        // if (APP_UI_Login_Click(ctx->ctx_UI)) {
+           
+        // }
         //==== Logic Tick ====
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
 

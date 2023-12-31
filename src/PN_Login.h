@@ -39,9 +39,9 @@ void PN_Login_Draw(PN_Login* panel) {
     panel->isClick = GuiButton(panel->rect_start,panel->txt_start);
 
     panel->isClickExit=GuiButton(panel->rect_exit,panel->txt_exit);
-    //     if (isClick) {
-    //         panel->onClickStartHandle();
-    //     }
+        if (panel->isClick || panel->isClickExit) {
+            panel->onClickStartHandle();
+        }
 }
 
 #endif
