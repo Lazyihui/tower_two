@@ -1,6 +1,7 @@
 #define RAYGUI_IMPLEMENTATION
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "../include/raylib.h"
 #include "../include/raymath.h"
 #include "../include/raygui.h"
@@ -20,7 +21,10 @@ void UI_Login_OnClicckStart() {
 int main() {
     ctx = (Ctx*)calloc(1, sizeof(Ctx));
     // 16:9
+    ctx=NULL;
     InitWindow(960, 540, "Draw");
+    //断言
+    assert(ctx!=NULL);
     SetTargetFPS(60);
     //==== Enter ====
     ctx_Inti(ctx);

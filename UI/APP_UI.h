@@ -27,7 +27,25 @@ void APP_UI_Draw(CtxUI* ctxUI) {
 }
 
 // 画时间 金钱
+// void B_Game_DrawScreenUI(Ctx* ctx) {
 
+//     // 时间
+//     DrawText("time", 20, 15, 20, BLACK);
+//     Text_Int(ctx->time, 63, 15, 20, ORANGE);
+
+//     // 金钱
+//     DrawText("gold", 20, 35, 20, BLACK);
+//     Text_Int(ctx->gold, 63, 35, 20, ORANGE);
+
+//     // 血量slider
+//     DrawRectangle(20, 60, 100, 15, RED);
+//     DrawRectangle(20, 60, ctx->hp, 15, GREEN);
+
+//     // 要改的
+//     if (IsKeyPressed(KEY_SPACE)) {
+//         ctx->hp -= 10;
+//     }
+// }
 // panel 使panel存在
 void APP_UI_Login_Open(CtxUI* ctxUI, void (*onClickStartHandle)(void)) {
     PN_Login* panel = (PN_Login*)calloc(1, sizeof(PN_Login));
