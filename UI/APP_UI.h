@@ -2,13 +2,24 @@
 #define APP_UI_H__
 
 #include "PN_Login.h"
+#include "../src/Common.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 typedef struct CtxUI {
     PN_Login* pn_login;
-    /* data */
+    float time;
+    float gold;
+
+    // slider
+    Rectangle rect;
+
 } CtxUI;
+
+void ctxUIInit(CtxUI* ctxUI) {
+    ctxUI->time = 0;
+    ctxUI->gold = 0;
+}
 
 // 释放
 void APP_UI_Free(CtxUI* ctxUI) {
@@ -20,13 +31,22 @@ void APP_UI_Free(CtxUI* ctxUI) {
 }
 
 // 画
-void APP_UI_Draw(CtxUI* ctxUI) {
+void APP_UI_Login_DrawUI(CtxUI* ctxUI) {
     if (ctxUI->pn_login != NULL) {
         PN_Login_Draw(ctxUI->pn_login);
     }
 }
 
 // 画时间 金钱
+void APP_UI_Game_Draw(CtxUI* ctxUI) {
+    // time
+    DrawText("time", 20, 15, 20, BLACK);
+    Text_Int(ctxUI->time, 63, 15, 20, ORANGE);
+
+    // gold
+    DrawText("gold", 20, 35, 20, BLACK);
+    Text_Int(ctxUI->gold, 63, 35, 20, ORANGE);
+}
 // void B_Game_DrawScreenUI(Ctx* ctx) {
 
 //     // 时间
@@ -68,6 +88,11 @@ bool APP_UI_Login_Click(CtxUI* ctxUI) {
         return ctxUI->pn_login->isClick;
     }
     return false;
+}
+
+void APP_UI_Game_Tick(CtxUI* ctxUI, float dt) {
+    ctxUI->time += dt;
+    ctxUI->gold += dt * 2.0f;
 }
 
 #endif

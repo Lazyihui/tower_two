@@ -13,18 +13,18 @@ static Ctx* ctx; // 静态区
 
 // 文本区
 void UI_Login_OnClicckStart() {
-    printf("b");
+    printf("login");
     APP_UI_Login_Close(ctx->ctx_UI);
     ctx->gameStatus = GAME_STATUS_GAME;
 }
 
+
 int main() {
     ctx = (Ctx*)calloc(1, sizeof(Ctx));
     // 16:9
-    ctx=NULL;
     InitWindow(960, 540, "Draw");
-    //断言
-    assert(ctx!=NULL);
+    // 断言
+    assert(ctx != NULL);
     SetTargetFPS(60);
     //==== Enter ====
     ctx_Inti(ctx);
@@ -50,6 +50,7 @@ int main() {
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
 
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
+            APP_UI_Game_Tick(ctx->ctx_UI,dt);
         }
         //==== Draw World ====
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
@@ -61,9 +62,10 @@ int main() {
         EndMode2D();
         // ==== Draw UI ====
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
-            APP_UI_Draw(ctx->ctx_UI);
+            APP_UI_Login_DrawUI(ctx->ctx_UI);
 
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
+            APP_UI_Game_Draw(ctx->ctx_UI);
         }
 
         EndDrawing();
