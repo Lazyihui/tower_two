@@ -3,7 +3,7 @@
 
 #include "../include/raylib.h"
 #include "../include/GUI_Button.h"
-#include "Common.h"
+#include "../src/Common.h"
 
 typedef struct PN_Login {
     Rectangle rect_start;

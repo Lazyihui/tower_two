@@ -1,8 +1,7 @@
 #ifndef CTX_H__
 #define CTX_H__
 
-#include "APP_UI.h"
-#include "PN_Login.h"
+#include "../UI/APP_UI.h"
 #include "E_Camera.h"
 #include "Common.h"
 #include "../include/raylib.h"

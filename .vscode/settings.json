@@ -24,6 +24,7 @@
         "ctx.h": "c",
         "app_ui.h": "c",
         "gui_button.h": "c",
-        "raygui.h": "c"
+        "raygui.h": "c",
+        "pn_login.h": "c"
     }
 }
