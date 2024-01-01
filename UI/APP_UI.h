@@ -54,12 +54,9 @@ void APP_UI_Game_Draw(CtxUI* ctxUI) {
     Text_Int(ctxUI->gold, 63, 35, 20, ORANGE);
 
     // silder
-    float value =ctxUI->value;
+    float value = ctxUI->value;
     GuiSliderBar(ctxUI->rectWorldHp, "hp", "t", &value, 0, 100);
 }
-
-
-
 
 // void B_Game_DrawScreenUI(Ctx* ctx) {
 
