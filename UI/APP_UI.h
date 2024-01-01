@@ -57,6 +57,10 @@ void APP_UI_Game_Draw(CtxUI* ctxUI) {
     float value =ctxUI->value;
     GuiSliderBar(ctxUI->rectWorldHp, "hp", "t", &value, 0, 100);
 }
+
+
+
+
 // void B_Game_DrawScreenUI(Ctx* ctx) {
 
 //     // 时间
