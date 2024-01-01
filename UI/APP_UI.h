@@ -12,13 +12,19 @@ typedef struct CtxUI {
     float gold;
 
     // slider
-    Rectangle rect;
-
+    Rectangle rectWorldHp;
+    float value;
 } CtxUI;
 
 void ctxUIInit(CtxUI* ctxUI) {
     ctxUI->time = 0;
     ctxUI->gold = 0;
+
+    ctxUI->rectWorldHp.height = 30;
+    ctxUI->rectWorldHp.width = 60;
+    ctxUI->rectWorldHp.x = 20;
+    ctxUI->rectWorldHp.y = 60;
+    ctxUI->value = 90;
 }
 
 // 释放
@@ -46,6 +52,10 @@ void APP_UI_Game_Draw(CtxUI* ctxUI) {
     // gold
     DrawText("gold", 20, 35, 20, BLACK);
     Text_Int(ctxUI->gold, 63, 35, 20, ORANGE);
+
+    // silder
+    float value =ctxUI->value;
+    GuiSliderBar(ctxUI->rectWorldHp, "hp", "t", &value, 0, 100);
 }
 // void B_Game_DrawScreenUI(Ctx* ctx) {
 

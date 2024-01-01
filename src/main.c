@@ -18,7 +18,6 @@ void UI_Login_OnClicckStart() {
     ctx->gameStatus = GAME_STATUS_GAME;
 }
 
-
 int main() {
     ctx = (Ctx*)calloc(1, sizeof(Ctx));
     // 16:9
@@ -28,7 +27,7 @@ int main() {
     SetTargetFPS(60);
     //==== Enter ====
     ctx_Inti(ctx);
-
+    ctxUIInit(ctx->ctx_UI);
     APP_UI_Login_Open(ctx->ctx_UI, &UI_Login_OnClicckStart);
 
     GuiLoadStyleCandy();
@@ -50,7 +49,7 @@ int main() {
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
 
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
-            APP_UI_Game_Tick(ctx->ctx_UI,dt);
+            APP_UI_Game_Tick(ctx->ctx_UI, dt);
         }
         //==== Draw World ====
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
