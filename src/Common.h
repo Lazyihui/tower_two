@@ -5,6 +5,12 @@
 #include "../include/raymath.h"
 
 #define std_cell 10
+const int std_towerCell = std_cell * 2;
+
+typedef enum ShapeType {
+    SHAPE_TYPE_RECT = 1,
+    SHAPE_TYPE_CIRCLE = 2,
+} ShapeType;
 
 enum GAME_STATUS { GAME_STATUS_LOGIN, GAME_STATUS_GAME, GAME_STATUS_OVER };
 

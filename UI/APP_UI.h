@@ -24,7 +24,7 @@ void ctxUIInit(CtxUI* ctxUI) {
     ctxUI->rectWorldHp.width = 130;
     ctxUI->rectWorldHp.x = 30;
     ctxUI->rectWorldHp.y = 60;
-    ctxUI->value = 90;
+    ctxUI->value = 100;
 }
 
 // 释放
