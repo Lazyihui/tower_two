@@ -46,21 +46,21 @@ void APP_UI_Login_DrawUI(CtxUI* ctxUI) {
 // 画时间 金钱
 void APP_UI_Game_Draw(CtxUI* ctxUI) {
     // time
-    DrawText("time", 2*std_cell, (int )1.5*std_cell, 2*std_cell, BLACK);
-    Text_Int(ctxUI->time, (int)7*std_cell, (int )1.5*std_cell, 2*std_cell, ORANGE);
+    DrawText("time", 2 * std_cell, (int)1.5 * std_cell, 2 * std_cell, BLACK);
+    Text_Int(ctxUI->time, (int)7 * std_cell, (int)1.5 * std_cell, 2 * std_cell, ORANGE);
 
     // gold
-    DrawText("gold", 2*std_cell, (int )3.5*std_cell, 2*std_cell, BLACK);
-    Text_Int(ctxUI->gold, (int )7*std_cell, (int)3.5*std_cell, 2*std_cell, ORANGE);
+    DrawText("gold", 2 * std_cell, (int)3.5 * std_cell, 2 * std_cell, BLACK);
+    Text_Int(ctxUI->gold, (int)7 * std_cell, (int)3.5 * std_cell, 2 * std_cell, ORANGE);
 
     // silder
     float value = ctxUI->value;
-    GuiSliderBar(ctxUI->rectWorldHp, "hp", " ", &value, 0, 10*std_cell);
+    GuiSliderBar(ctxUI->rectWorldHp, "hp", " ", &value, 0, 10 * std_cell);
 }
 
-
-void APP_UI_Game_DrawWorld(CtxUI *ctxUI){
-
+void APP_UI_Game_DrawWorld(CtxUI* ctxUI) {
+    // 路
+    DrawRectangle(std_cell * -5, std_cell *(int) -26.5, std_cell * 10, std_cell * 53, BROWN);
 }
 
 // panel 使panel存在

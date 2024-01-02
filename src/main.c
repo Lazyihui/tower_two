@@ -56,6 +56,8 @@ int main() {
 
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
             // DrawCircle(0, 0, 100, RED);
+            APP_UI_Game_DrawWorld(ctx->ctx_UI);
+            // DrawRectangle(0,26*std_cell,10,10,RED);
         }
 
         EndMode2D();
