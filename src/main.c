@@ -14,10 +14,11 @@ static Ctx* ctx; // 静态区
 
 // 文本区
 void UI_Login_OnClicckStart() {
-    printf("login");
+    printf("login\r\n");
     APP_UI_Login_Close(ctx->ctx_UI);
     ctx->gameStatus = GAME_STATUS_GAME;
     B_Game_Enter(ctx);
+    printf("end");
 }
 
 int main() {
@@ -50,6 +51,8 @@ int main() {
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
             APP_UI_Game_Tick(ctx->ctx_UI, dt);
+            B_Game_Tick(ctx, dt);
+            assert(ctx->ctx_UI != NULL);
         }
         //==== Draw World ====
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
@@ -59,6 +62,7 @@ int main() {
 
             APP_UI_Game_DrawWorld(ctx->ctx_UI);
             B_Game_Draw(ctx);
+
             // DrawRectangle(0,26*std_cell,10,10,RED);
         }
 

@@ -27,9 +27,6 @@ typedef struct E_Mst {
 
 } E_Mst;
 
-void E_Mst_Input(E_Mst* mst) {
-    mst->moveAxis.y = -1;
-}
 
 void E_Mst_Move(E_Mst* mst, Vector2 moveAxis, float dt) {
     Vector2* posptr = &mst->pos;

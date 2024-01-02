@@ -38,6 +38,9 @@ typedef struct Ctx {
 
     // RP mst
     RP_Mst* rp_mst;
+    float mstSpawnTimer;
+    float mstSpawnInterval;
+
 } Ctx;
 
 void ctx_Inti(Ctx* ctx) {
@@ -57,6 +60,7 @@ void ctx_Inti(Ctx* ctx) {
     // tpl
     Template* tpl = (Template*)calloc(1, sizeof(Template));
     Template_Cell_Init(tpl);
+    Template_Mst_Init(tpl);
     ctx->tpl = tpl;
 
     // s_id
@@ -72,7 +76,9 @@ void ctx_Inti(Ctx* ctx) {
     // RP mst
     RP_Mst* rp_mst = (RP_Mst*)calloc(1, sizeof(RP_Mst));
     RP_Mst_Init(rp_mst);
-    ctx->rp_mst=rp_mst;
+    ctx->mstSpawnTimer = 2;
+    ctx->mstSpawnInterval = 2;
+    ctx->rp_mst = rp_mst;
 }
 
 void ctx_Free(Ctx* ctx) {

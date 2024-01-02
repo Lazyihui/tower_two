@@ -5,12 +5,12 @@
 #include "Factory.h"
 #include "E_cell.h"
 
+void D_Cell_Spawn(Ctx* ctx, int typeID, Vector2 pos) {
 
-void D_Cell_Spawn(Ctx *ctx,int typeID,Vector2 pos){
-
-    E_cell *cell = Factory_Create_Cell(ctx,typeID,pos);
-
-    RP_Cell_Add(ctx->rp_Cell,cell);
+    E_cell* cell = Factory_Create_Cell(ctx, typeID, pos);
+    if (cell != NULL) {
+        RP_Cell_Add(ctx->rp_Cell, cell);
+    }
 }
 
 #endif

@@ -28,6 +28,7 @@ void RP_Cell_Add(RP_Cell* rp, E_cell* cell) {
     rp->all[rp->count++] = cell;
 }
 
+
 // 移除
 void RP_Cell_Remove(RP_Cell* rp, E_cell* cell) {
     for (int i = 0; i < rp->count; i++) {
@@ -38,6 +39,7 @@ void RP_Cell_Remove(RP_Cell* rp, E_cell* cell) {
         }
     }
 }
+
 //找到是哪一个cell
 E_cell *RP_Cell_Get(RP_Cell *rp, int ID) {
     for (int i = 0; i < rp->count; i++) {
