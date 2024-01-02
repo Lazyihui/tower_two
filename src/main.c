@@ -8,6 +8,7 @@
 #include "../include/style_candy.h"
 #include "Ctx.h"
 #include "../UI/APP_UI.h"
+#include "B_Game.h"
 
 static Ctx* ctx; // 静态区
 
@@ -16,6 +17,7 @@ void UI_Login_OnClicckStart() {
     printf("login");
     APP_UI_Login_Close(ctx->ctx_UI);
     ctx->gameStatus = GAME_STATUS_GAME;
+    B_Game_Enter(ctx);
 }
 
 int main() {
@@ -41,13 +43,11 @@ int main() {
         ClearBackground(RAYWHITE);
 
         //==== Input ====
-
         // if (APP_UI_Login_Click(ctx->ctx_UI)) {
 
         // }
         //==== Logic Tick ====
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
-
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
             APP_UI_Game_Tick(ctx->ctx_UI, dt);
         }
@@ -56,7 +56,9 @@ int main() {
 
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
             // DrawCircle(0, 0, 100, RED);
+
             APP_UI_Game_DrawWorld(ctx->ctx_UI);
+            B_Game_Draw(ctx);
             // DrawRectangle(0,26*std_cell,10,10,RED);
         }
 

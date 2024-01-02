@@ -35,7 +35,7 @@ void E_cell_Draw(E_cell *cell){
     if(cell->shapeType==SHAPE_TYPE_CIRCLE){
         DrawCircleV(center,cell->size.x/2,cell->color);
     }else if (cell->shapeType==SHAPE_TYPE_RECT){
-        DrawRectangleV(center,cell->size,cell->color);
+        DrawRectangleV(cell->pos,cell->size,cell->color);
     }else {
         printf("E_cell_Draw err");
     }

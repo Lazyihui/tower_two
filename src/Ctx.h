@@ -72,5 +72,6 @@ void ctx_Free(Ctx* ctx) {
     free(ctx->ctx_UI);
     Template_free(ctx->tpl);
     free(ctx->s_id);
+    RP_Cell_Free(ctx->rp_Cell);
 }
 #endif
