@@ -12,8 +12,7 @@ typedef struct RP_Cell {
 } RP_Cell;
 
 void RP_Cell_Init(RP_Cell* rp) {
-    rp->all = (E_cell**)calloc(40 * 23 * 10, sizeof(E_cell*));
-    printf("%d", sizeof(E_cell*));
+    rp->all = (E_cell**)calloc(20, sizeof(E_cell*));
     rp->count = 0;
 }
 

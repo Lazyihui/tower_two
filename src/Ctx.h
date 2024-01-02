@@ -9,6 +9,7 @@
 #include "E_Camera.h"
 #include "Template.h"
 #include "S_ID.h"
+#include "RP_Mst.h"
 #include "RP_Cell.h"
 
 typedef struct Ctx {
@@ -32,9 +33,11 @@ typedef struct Ctx {
     // id
     S_ID* s_id;
 
-    //RP
-    RP_Cell *rp_Cell;
+    // RP cell
+    RP_Cell* rp_Cell;
 
+    // RP mst
+    RP_Mst* rp_mst;
 } Ctx;
 
 void ctx_Inti(Ctx* ctx) {
@@ -53,19 +56,23 @@ void ctx_Inti(Ctx* ctx) {
 
     // tpl
     Template* tpl = (Template*)calloc(1, sizeof(Template));
-    Template_Init(tpl);
+    Template_Cell_Init(tpl);
     ctx->tpl = tpl;
 
     // s_id
     S_ID* s_id = (S_ID*)calloc(1, sizeof(S_ID));
     S_ID_Init(s_id);
     ctx->s_id = s_id;
-    
-    //RP
-    RP_Cell* rp_cell =(RP_Cell*)calloc(1,sizeof(RP_Cell));
-    RP_Cell_Init(rp_cell);
-    ctx->rp_Cell=rp_cell;
 
+    // RP cell
+    RP_Cell* rp_cell = (RP_Cell*)calloc(1, sizeof(RP_Cell));
+    RP_Cell_Init(rp_cell);
+    ctx->rp_Cell = rp_cell;
+
+    // RP mst
+    RP_Mst* rp_mst = (RP_Mst*)calloc(1, sizeof(RP_Mst));
+    RP_Mst_Init(rp_mst);
+    ctx->rp_mst=rp_mst;
 }
 
 void ctx_Free(Ctx* ctx) {
@@ -73,5 +80,6 @@ void ctx_Free(Ctx* ctx) {
     Template_free(ctx->tpl);
     free(ctx->s_id);
     RP_Cell_Free(ctx->rp_Cell);
+    RP_Mst_Free(ctx->rp_mst);
 }
 #endif
