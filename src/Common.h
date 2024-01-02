@@ -4,6 +4,8 @@
 #include "../include/raylib.h"
 #include "../include/raymath.h"
 
+#define std_cell 10
+
 enum GAME_STATUS { GAME_STATUS_LOGIN, GAME_STATUS_GAME, GAME_STATUS_OVER };
 
 Vector2 Vector2_New(float x, float y) {

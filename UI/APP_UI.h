@@ -20,9 +20,9 @@ void ctxUIInit(CtxUI* ctxUI) {
     ctxUI->time = 0;
     ctxUI->gold = 0;
 
-    ctxUI->rectWorldHp.height = 30;
-    ctxUI->rectWorldHp.width = 60;
-    ctxUI->rectWorldHp.x = 20;
+    ctxUI->rectWorldHp.height = 20;
+    ctxUI->rectWorldHp.width = 130;
+    ctxUI->rectWorldHp.x = 30;
     ctxUI->rectWorldHp.y = 60;
     ctxUI->value = 90;
 }
@@ -46,37 +46,23 @@ void APP_UI_Login_DrawUI(CtxUI* ctxUI) {
 // 画时间 金钱
 void APP_UI_Game_Draw(CtxUI* ctxUI) {
     // time
-    DrawText("time", 20, 15, 20, BLACK);
-    Text_Int(ctxUI->time, 63, 15, 20, ORANGE);
+    DrawText("time", 2*std_cell, (int )1.5*std_cell, 2*std_cell, BLACK);
+    Text_Int(ctxUI->time, (int)7*std_cell, (int )1.5*std_cell, 2*std_cell, ORANGE);
 
     // gold
-    DrawText("gold", 20, 35, 20, BLACK);
-    Text_Int(ctxUI->gold, 63, 35, 20, ORANGE);
+    DrawText("gold", 2*std_cell, (int )3.5*std_cell, 2*std_cell, BLACK);
+    Text_Int(ctxUI->gold, (int )7*std_cell, (int)3.5*std_cell, 2*std_cell, ORANGE);
 
     // silder
     float value = ctxUI->value;
-    GuiSliderBar(ctxUI->rectWorldHp, "hp", "t", &value, 0, 100);
+    GuiSliderBar(ctxUI->rectWorldHp, "hp", " ", &value, 0, 10*std_cell);
 }
 
-// void B_Game_DrawScreenUI(Ctx* ctx) {
 
-//     // 时间
-//     DrawText("time", 20, 15, 20, BLACK);
-//     Text_Int(ctx->time, 63, 15, 20, ORANGE);
+void APP_UI_Game_DrawWorld(CtxUI *ctxUI){
 
-//     // 金钱
-//     DrawText("gold", 20, 35, 20, BLACK);
-//     Text_Int(ctx->gold, 63, 35, 20, ORANGE);
+}
 
-//     // 血量slider
-//     DrawRectangle(20, 60, 100, 15, RED);
-//     DrawRectangle(20, 60, ctx->hp, 15, GREEN);
-
-//     // 要改的
-//     if (IsKeyPressed(KEY_SPACE)) {
-//         ctx->hp -= 10;
-//     }
-// }
 // panel 使panel存在
 void APP_UI_Login_Open(CtxUI* ctxUI, void (*onClickStartHandle)(void)) {
     PN_Login* panel = (PN_Login*)calloc(1, sizeof(PN_Login));
