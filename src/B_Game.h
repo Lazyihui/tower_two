@@ -26,11 +26,15 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     // mst 生成
     ctx->mstSpawnTimer -= dt;
     if (ctx->mstSpawnTimer <= 0) {
-
-
-        D_Mst_Spawn(ctx, 1,Vector2_New(88,88) );
+        D_Mst_Spawn(ctx, 1, Vector2_New(20, 20), dt);
         ctx->mstSpawnTimer = ctx->mstSpawnInterval;
-   
+        printf("a");
+    }
+
+    for (int i = 0; i < ctx->rp_mst->count; i++) {
+        // 加一个i取一个*
+        E_Mst* mst = ctx->rp_mst->all[i];
+        D_Mst_Move(ctx, mst,dt);
     }
 }
 
@@ -46,6 +50,7 @@ void B_Game_Draw(Ctx* ctx) {
     int mstLenth = ctx->rp_mst->count;
     for (int i = 0; i < mstLenth; i++) {
         E_Mst* mst = ctx->rp_mst->all[i];
+
         if (mst->isLive) {
             E_Mst_Draw(mst);
         }

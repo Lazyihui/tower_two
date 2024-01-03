@@ -10,24 +10,23 @@ typedef struct RP_Mst {
     int count;
 } RP_Mst;
 
-void RP_Mst_Init(RP_Mst* rp) {
-    rp->all = (E_Mst**)calloc(1000, sizeof(E_Mst*));
-    rp->count = 0;
+void RP_Mst_Init(RP_Mst* rp_mst) {
+    rp_mst->all = (E_Mst**)calloc(1000, sizeof(E_Mst*));
+    rp_mst->count = 0;
 }
 
-void RP_Mst_Free(RP_Mst* rp) {
-    for (int i = 0; i < rp->count; i++) {
-        free(rp->all[i]);
+void RP_Mst_Free(RP_Mst* rp_mst) {
+    for (int i = 0; i < rp_mst->count; i++) {
+        free(rp_mst->all[i]);
     }
-    free(rp->all);
-    free(rp);
+    free(rp_mst->all);
+    free(rp_mst);
 }
 
-void RP_Mst_Add(RP_Mst* rp, E_Mst* mst) {
-    assert(mst!=NULL);
-    printf("a");
-        rp->all[rp->count++] = mst;
-
+void RP_Mst_Add(RP_Mst* rp_mst, E_Mst* mst) {
+    rp_mst->all[rp_mst->count++] = mst;
 }
+
+
 
 #endif

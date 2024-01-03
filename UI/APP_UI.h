@@ -60,10 +60,7 @@ void APP_UI_Game_Draw(CtxUI* ctxUI) {
 
 void APP_UI_Game_DrawWorld(CtxUI* ctxUI) {
     // 路
-    DrawRectangle(std_cell * -5, std_cell *(int) -26.5, std_cell * 10, std_cell * 53, BROWN);
-    // DrawRectangle(std_cell * -6, std_cell *(int) -26.5, std_cell * 1, std_cell * 1, RED);
-    // DrawRectangle(std_cell * 5, std_cell *(int) -26.5, std_cell * 1, std_cell * 1, RED);
-
+    DrawRectangle(std_cell * -5, std_cell * (int)-26.5, std_cell * 10, std_cell * 53, BROWN);
 }
 
 // panel 使panel存在

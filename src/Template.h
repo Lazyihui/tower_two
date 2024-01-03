@@ -45,7 +45,7 @@ void Template_Mst_Init(Template *tpl){
     mst_small.typeID = 1;
     mst_small.speed = 20;
     mst_small.radius = 10;
-    mst_small.color = WHITE;
+    mst_small.color = RED;
     mst_small.hp = 1;
     mst[tpl->mstLenth++]=mst_small;
 
@@ -76,16 +76,11 @@ TM_Cell *Template_GetCell(Template *tpl,int typeID){
 }
 
 TM_Mst *Template_GetMst(Template *tpl,int typeID){
-    assert(tpl!=NULL);
-    assert(tpl->msts!=NULL);
-
     for(int i=0;i<tpl->mstLenth;i++){
         if(tpl->msts[i].typeID==typeID){
             return &tpl->msts[i];
         }
     }
-    printf("%d",typeID);
-    assert(false);
 
     return NULL;
     
