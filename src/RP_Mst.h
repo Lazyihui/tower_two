@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "E_Mst.h"
 
+//增删改查
 typedef struct RP_Mst {
     E_Mst** all;
     int count;
@@ -27,6 +28,16 @@ void RP_Mst_Add(RP_Mst* rp_mst, E_Mst* mst) {
     rp_mst->all[rp_mst->count++] = mst;
 }
 
+void RP_Mst_Remove(RP_Mst *rp_mst,E_Mst *mst){
+    for(int i=0;i<rp_mst->count;i++){
+        if(rp_mst->all[i]->ID==mst->ID){
+            rp_mst->all[i]=rp_mst->all[rp_mst->count];
+            rp_mst->count--;
+            return;
+            
+        }
+    }
 
+}
 
 #endif

@@ -26,15 +26,31 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     // mst 生成
     ctx->mstSpawnTimer -= dt;
     if (ctx->mstSpawnTimer <= 0) {
-        D_Mst_Spawn(ctx, 1, Vector2_New(20, 20), dt);
+        D_Mst_Spawn(ctx, 1, Vector2_New(0, 28 * std_cell), dt);
         ctx->mstSpawnTimer = ctx->mstSpawnInterval;
         printf("a");
     }
-
+    // 移动
     for (int i = 0; i < ctx->rp_mst->count; i++) {
         // 加一个i取一个*
         E_Mst* mst = ctx->rp_mst->all[i];
-        D_Mst_Move(ctx, mst,dt);
+        D_Mst_Move(ctx, mst, dt);
+    }
+    //mst的血量减为0的情况
+    for (int i = 0; i < ctx->rp_mst->count; i++) {
+        E_Mst* mst = ctx->rp_mst->all[i];
+        if (mst->pos.y <= 18) {
+            mst->isLive = false;
+        }
+    }
+    //mst移除
+    for (int i = ctx->rp_mst->count - 1; i >= 0; i--) {
+        E_Mst* mst = ctx->rp_mst->all[i];
+        if (!mst->isLive) {
+            ctx->rp_mst->all[i] = ctx->rp_mst->all[ctx->rp_mst->count - 1];
+            ctx->rp_mst->all[ctx->rp_mst->count - 1] = mst;
+            ctx->rp_mst->count -= 1;
+        }
     }
 }
 

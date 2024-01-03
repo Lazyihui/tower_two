@@ -12,7 +12,6 @@
 void D_Mst_Spawn(Ctx* ctx, int typeID, Vector2 pos, float dt) {
 
     E_Mst* mst = Factory_Create_Mst(ctx, typeID, pos, Vector2_New(0, -1));
-
     if (mst != NULL) {
         RP_Mst_Add(ctx->rp_mst, mst);
     }
@@ -23,5 +22,11 @@ void D_Mst_Move(Ctx* ctx, E_Mst* mst, float dt) {
         return;
     }
     E_Mst_Move(mst, Vector2_New(0, -1), dt);
+}
+
+void D_Mst_Remove(Ctx *ctx,E_Mst*mst ){
+    if(!mst->isLive){
+        RP_Mst_Remove(ctx->rp_mst,mst);
+    }
 }
 #endif
