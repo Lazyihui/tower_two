@@ -5,14 +5,7 @@
 #include "../include/raylib.h"
 #include "Common.h"
 
-typedef struct TM_Cell
-{   
-    int typeID;
-    ShapeType shapeType;
-    Color color;
-    Vector2 size;
-    /* data */
-}TM_Cell;
+
 
 
 
