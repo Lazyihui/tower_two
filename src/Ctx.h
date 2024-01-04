@@ -1,16 +1,13 @@
 #ifndef CTX_H__
 #define CTX_H__
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "../include/raylib.h"
 #include "Common.h"
+#include "../include/raylib.h"
 #include "../UI/APP_UI.h"
-#include "E_Camera.h"
-#include "Template.h"
-#include "S_ID.h"
-#include "RP_Mst.h"
-#include "RP_Cell.h"
+#include "Entitise/export.h"
+#include "Repository/export.h"
+#include "Template/export.h"
+#include "Service/export.h"
 
 typedef struct Ctx {
 

@@ -1,8 +1,10 @@
 #ifndef COMMON_H__
 #define COMMON_H__
 
+#include "../include/raygui.h"
 #include "../include/raylib.h"
 #include "../include/raymath.h"
+#include "../include/style_candy.h"
 
 #define Plog(x,...) printf("%s:%d",__FILE__,__LINE__); printf(x,__VA_ARGS__)
 #define std_cell 10

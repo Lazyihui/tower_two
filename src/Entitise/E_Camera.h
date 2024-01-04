@@ -1,8 +1,7 @@
 #ifndef E_CAMERA_H__
 #define E_CAMERA_H__
-#include "../include/raylib.h"
-#include "Common.h"
 
+#include "import.h"
 
 typedef struct E_Camera {
     Camera2D camera;

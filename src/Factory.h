@@ -2,10 +2,6 @@
 #define FACTORY_H__
 
 #include "Ctx.h"
-#include "E_cell.h"
-#include "Template.h"
-#include "S_ID.h"
-#include "E_Mst.h"
 
 E_cell* Factory_Create_Cell(Ctx* ctx, int typeID, Vector2 pos) {
 

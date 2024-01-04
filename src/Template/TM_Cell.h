@@ -1,9 +1,7 @@
 #ifndef TM_CELL_H__
 #define TM_CELL_H__
 
-#include "../../include/raylib.h"
-#include "../../include/raymath.h"
-#include "../Common.h"
+#include "import.h"
 
 typedef struct TM_Cell
 {   
@@ -13,5 +11,7 @@ typedef struct TM_Cell
     Vector2 size;
     /* data */
 }TM_Cell;
+
+
 
 #endif

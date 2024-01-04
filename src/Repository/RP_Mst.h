@@ -3,8 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "E_Mst.h"
-
+#include "import.h"
 //增删改查
 typedef struct RP_Mst {
     E_Mst** all;

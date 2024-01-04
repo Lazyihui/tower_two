@@ -1,10 +1,8 @@
 #ifndef E_CELL_H__
 #define E_CELL_H__
 
-#include <stdio.h>
-#include "../include/raylib.h"
-#include "Common.h"
 
+#include "import.h"
 
 
 

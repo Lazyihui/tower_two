@@ -1,11 +1,9 @@
-#ifndef B_GAME_H__
-#define B_GAME_H__
+#ifndef  BUSINESS_B_GAME_H__
+#define  BUSINESS_B_GAME_H__
 
-#include "E_cell.h"
-#include "E_Mst.h"
 #include "D_Cell.h"
 #include "D_Mst.h"
-#include "Ctx.h"
+#include "import.h"
 
 void B_Game_Enter(Ctx* ctx) {
 

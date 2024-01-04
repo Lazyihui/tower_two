@@ -1,13 +1,7 @@
 #ifndef D_MST_H__
 #define D_MST_H__
 
-#include <stdio.h>
-#include <stdbool.h>
-#include "E_Mst.h"
-#include "E_cell.h"
-#include "Factory.h"
-#include "RP_Mst.h"
-#include "Ctx.h"
+#include "import.h"
 
 void D_Mst_Spawn(Ctx* ctx, int typeID, Vector2 pos, float dt) {
 

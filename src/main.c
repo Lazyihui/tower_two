@@ -1,14 +1,9 @@
 #define RAYGUI_IMPLEMENTATION
+
+#include "Business_Game/export.h"
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
-#include "../include/raylib.h"
-#include "../include/raymath.h"
-#include "../include/raygui.h"
-#include "../include/style_candy.h"
-#include "Ctx.h"
-#include "../UI/APP_UI.h"
-#include "B_Game.h"
 
 static Ctx* ctx; // 静态区
 
