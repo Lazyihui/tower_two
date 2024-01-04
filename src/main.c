@@ -32,7 +32,7 @@ int main() {
     ctx_Inti(ctx);
     ctxUIInit(ctx->ctx_UI);
     APP_UI_Login_Open(ctx->ctx_UI, &UI_Login_OnClicckStart);
-
+    Plog("start Game %d\r\n",1);
     GuiLoadStyleCandy();
     while (!WindowShouldClose()) {
 

@@ -4,6 +4,7 @@
 #include "../include/raylib.h"
 #include "../include/raymath.h"
 
+#define Plog(x,...) printf("%s:%d",__FILE__,__LINE__); printf(x,__VA_ARGS__)
 #define std_cell 10
 const int std_towerCell = std_cell * 2;
 
