@@ -2,6 +2,7 @@
 #define COMMON_H__
 
 #include <stdio.h>
+#include <assert.h>
 #include <stdlib.h>
 #include "../include/raygui.h"
 #include "../include/raylib.h"

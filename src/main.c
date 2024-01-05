@@ -30,9 +30,15 @@ int main() {
     ctx_Inti(ctx);
     ctxUIInit(ctx->ctx_UI);
     APP_UI_Login_Open(ctx->ctx_UI, &UI_Login_OnClicckStart);
-    APP_UI_PanelTower_Open(ctx->ctx_UI, Vector2_New(0, 2), &UI_PanelTower);
-    // Plog("start Game %f\r\n", ctx->mstSpawnInterval);
 
+    // Plog("start Game %f\r\n", ctx->mstSpawnInterval);
+    PanelTower panel = {0};
+    panel.gapY = 10;
+    panel.eleCount = 3;
+    panel.eleSize = 40;
+    panel.isOpen = false;
+
+    int towerTypes[3] = {1, 2, 3};
     GuiLoadStyleCandy();
     while (!WindowShouldClose()) {
 
@@ -52,28 +58,20 @@ int main() {
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
             APP_UI_Game_Tick(ctx->ctx_UI, dt);
             B_Game_Tick(ctx, dt);
-            assert(ctx->ctx_UI != NULL);
-            if (IsKeyPressed(KEY_A)) {
-                ctx->ctx_UI->PanelTower->isOpen = true;
-                for (int i = 0; i < 3; i++) {
 
-                    int typeID = ctx->ctx_UI->typeTower[i];
-                    PanelTower_AddEle(ctx->ctx_UI->PanelTower, Vector2_New(50, 50), typeID);
-                }
-            } else {
-                PanelTower_Close(ctx->ctx_UI->PanelTower);
+            if (IsKeyPressed(KEY_A)) {
+                APP_UI_PanelTower_Open(ctx->ctx_UI, &UI_PanelTower);
+
             }
         }
         //==== Draw World ====
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
 
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
-            // DrawCircle(0, 0, 100, RED);
 
             APP_UI_Game_DrawWorld(ctx->ctx_UI);
             B_Game_Draw(ctx);
-
-            // DrawRectangle(0,26*std_cell,10,10,RED);
+            
         }
 
         EndMode2D();

@@ -1,5 +1,5 @@
-#ifndef UI_E_TOWERPANEL_H__
-#define UI_E_TOWERPANEL_H__
+#ifndef UI_PNTOWERMANIFEST_H__
+#define UI_PNTOWERMANIFEST_H__
 
 #include "import.h"
 
@@ -23,7 +23,7 @@ UI_PanelEle UI_PanelEle_CreatTowerType(int index, int typeID, Vector2 pos, Vecto
 
     default:
         color = BLACK;
-        printf("err UI_PanelEle_CreatTowerType");
+        printf("err UI_PanelEle_CreatTowerType\r\n");
         // Plog("ERR");
         break;
     }
@@ -59,6 +59,14 @@ typedef struct PanelTower {
     void (*onClickStartHandle)(void);
 } PanelTower;
 
+void PanelTower_Spawn(PanelTower* panel) {
+    panel->startPos.x = 0;
+    panel->startPos.y = 0;
+    panel->eleCount = 0;
+    panel->eleSize = std_cell;
+    panel->gapY = std_cell / 4;
+    panel->isOpen = true;
+}
 
 void PanelTower_AddEle(PanelTower* panel, Vector2 worldPos, int typeID) {
     panel->startPos = worldPos;
@@ -84,27 +92,17 @@ void PanelTower_Close(PanelTower* panel) {
     panel->isOpen = false;
 }
 
-void PanelTower_Spawn(PanelTower* panel, Vector2 cellPos) {
-    if (cellPos.x < 0) {
-        panel->startPos.x =cellPos.x-std_cell;
-        panel->startPos.y =cellPos.y;
-    }else{
-         panel->startPos.x =cellPos.x+std_cell;
-        panel->startPos.y =cellPos.y;
-    }
-    panel->eleCount=0;
-    panel->eleSize=std_cell;
-    panel->gapY=std_cell/4;
-    panel->isOpen=false;
-}
-
 void PanelTower_Draw(PanelTower* panel) {
+    assert(panel != NULL);
     if (!panel->isOpen) {
         return;
-    }
-    for (int i = 0; i < panel->eleCount; i++) {
-        UI_PanelEle* ele = &panel->element[i];
-        UI_PanelEle_Draw(ele);
+    } else {
+        DrawRectangle(50, 50, 50, 50, RED);
+        for (int i = 0; i < panel->eleCount; i++) {
+            UI_PanelEle* ele = &panel->element[i];
+            UI_PanelEle_Draw(ele);
+            printf("PanelTower_Draw\r\n");
+        }
     }
 }
 

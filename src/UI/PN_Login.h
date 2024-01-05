@@ -1,9 +1,7 @@
 #ifndef PN_LOGIN_H__
 #define PN_LOGIN_H__
 
-#include "../include/raylib.h"
-#include "../include/GUI_Button.h"
-#include "../src/Common.h"
+#include "import.h"
 
 typedef struct PN_Login {
     Rectangle rect_start;

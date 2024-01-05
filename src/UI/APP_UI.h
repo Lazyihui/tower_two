@@ -2,10 +2,9 @@
 #define APP_UI_H__
 
 #include "PN_Login.h"
-#include "../src/Common.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "E_TowerPanel.h"
+#include "PN_TowerManifest.h"
 
 typedef struct CtxUI {
     PN_Login* pn_login;
@@ -50,7 +49,6 @@ void APP_UI_Login_DrawUI(CtxUI* ctxUI) {
     if (ctxUI->pn_login != NULL) {
         PN_Login_Draw(ctxUI->pn_login);
     }
-    PanelTower_Draw(ctxUI->PanelTower);
 }
 
 // 画时间 金钱
@@ -71,13 +69,17 @@ void APP_UI_Game_Draw(CtxUI* ctxUI) {
 void APP_UI_Game_DrawWorld(CtxUI* ctxUI) {
     // 路
     DrawRectangle(std_cell * -5, std_cell * (int)-26.5, std_cell * 10, std_cell * 53, BROWN);
+    if (ctxUI->PanelTower != NULL) {
+        PanelTower_Draw(ctxUI->PanelTower);
+    }
 }
 
-void APP_UI_PanelTower_Open(CtxUI* ctxUI, Vector2 cellPos, void (*onClickStartHandle)(void)) {
+void APP_UI_PanelTower_Open(CtxUI* ctxUI, void (*onClickStartHandle)(void)) {
     PanelTower* panel = (PanelTower*)calloc(1, sizeof(PanelTower));
     panel->onClickStartHandle = onClickStartHandle;
-    PanelTower_Spawn(panel, cellPos);
     ctxUI->PanelTower = panel;
+    PanelTower_Spawn(panel);
+    printf("APP_UI_PanelTower_Open\r\n");
 }
 
 // panel 使panel存在
