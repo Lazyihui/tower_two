@@ -58,6 +58,7 @@ void ctx_Inti(Ctx* ctx) {
     Template* tpl = (Template*)calloc(1, sizeof(Template));
     Template_Cell_Init(tpl);
     Template_Mst_Init(tpl);
+    Template_Tower_Init(tpl);
     ctx->tpl = tpl;
 
     // s_id

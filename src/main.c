@@ -23,6 +23,7 @@ int main() {
     ctx = (Ctx*)calloc(1, sizeof(Ctx));
     // 16:9
     InitWindow(960, 540, "Draw");
+    PlogNoArg("GameStart");
     // 断言
     assert(ctx != NULL);
     SetTargetFPS(60);

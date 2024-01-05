@@ -9,9 +9,13 @@
 #include "../include/raymath.h"
 #include "../include/style_candy.h"
 
-// #define Plog(x, ...)                                                                                                   \
-//     printf("%s:%d", __FILE__, __LINE__);                                                                               \
-//     printf(x, __VA_ARGS__);
+#define PlogNoArg(x)                                                                                                   \
+    printf("%s:%d ", __FILE__, __LINE__);                                                                               \
+    printf(x)
+#define Plog(x, ...)                                                                                                   \
+    printf("%s:%d ", __FILE__, __LINE__);                                                                               \
+    printf(x, __VA_ARGS__)
+
 #define std_cell 10
 const int std_towerCell = std_cell * 2;
 
@@ -29,7 +33,7 @@ Vector2 Vector2_New(float x, float y) {
     return a;
 }
 
-Rectangle RectangleNew(float x, float y, float width,float height) {
+Rectangle RectangleNew(float x, float y, float width, float height) {
     Rectangle r;
     r.x = x;
     r.y = y;
