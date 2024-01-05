@@ -31,13 +31,6 @@ int main() {
     ctxUIInit(ctx->ctx_UI);
     APP_UI_Login_Open(ctx->ctx_UI, &UI_Login_OnClicckStart);
 
-    // Plog("start Game %f\r\n", ctx->mstSpawnInterval);
-    PanelTower panel = {0};
-    panel.gapY = 10;
-    panel.eleCount = 3;
-    panel.eleSize = 40;
-    panel.isOpen = false;
-
     int towerTypes[3] = {1, 2, 3};
     GuiLoadStyleCandy();
     while (!WindowShouldClose()) {
@@ -60,8 +53,9 @@ int main() {
             B_Game_Tick(ctx, dt);
 
             if (IsKeyPressed(KEY_A)) {
-                APP_UI_PanelTower_Open(ctx->ctx_UI, &UI_PanelTower);
 
+                APP_UI_PanelTower_Open(ctx->ctx_UI, &UI_PanelTower);
+                // APP_UI_PanelTower_Add(ctx->ctx_UI,,);
             }
         }
         //==== Draw World ====
@@ -71,7 +65,6 @@ int main() {
 
             APP_UI_Game_DrawWorld(ctx->ctx_UI);
             B_Game_Draw(ctx);
-            
         }
 
         EndMode2D();

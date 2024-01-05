@@ -4,7 +4,7 @@
 #include "PN_Login.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "PN_TowerManifest.h"
+#include "PN_TowerMani.h"
 
 typedef struct CtxUI {
     PN_Login* pn_login;
@@ -15,7 +15,7 @@ typedef struct CtxUI {
     Rectangle rectWorldHp;
     float value;
 
-    PanelTower* PanelTower;
+    PN_TowerMani* pn_towerMani;
     int typeTower[3];
 
 } CtxUI;
@@ -69,17 +69,22 @@ void APP_UI_Game_Draw(CtxUI* ctxUI) {
 void APP_UI_Game_DrawWorld(CtxUI* ctxUI) {
     // 路
     DrawRectangle(std_cell * -5, std_cell * (int)-26.5, std_cell * 10, std_cell * 53, BROWN);
-    if (ctxUI->PanelTower != NULL) {
-        PanelTower_Draw(ctxUI->PanelTower);
+    if (ctxUI->pn_towerMani != NULL) {
+        PanelTower_Draw(ctxUI->pn_towerMani);
     }
 }
 
 void APP_UI_PanelTower_Open(CtxUI* ctxUI, void (*onClickStartHandle)(void)) {
-    PanelTower* panel = (PanelTower*)calloc(1, sizeof(PanelTower));
+    PN_TowerMani* panel = (PN_TowerMani*)calloc(1, sizeof(PN_TowerMani));
     panel->onClickStartHandle = onClickStartHandle;
-    ctxUI->PanelTower = panel;
+    ctxUI->pn_towerMani = panel;
     PanelTower_Spawn(panel);
     printf("APP_UI_PanelTower_Open\r\n");
+}
+
+void APP_UI_PanelTower_Add(CtxUI* ctxUI, Vector2 pos, int typeID) {
+
+    PanelTower_AddEle(ctxUI->pn_towerMani, pos, typeID);
 }
 
 // panel 使panel存在

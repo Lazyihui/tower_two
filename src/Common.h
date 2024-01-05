@@ -29,6 +29,15 @@ Vector2 Vector2_New(float x, float y) {
     return a;
 }
 
+Rectangle RectangleNew(float x, float y, float width,float height) {
+    Rectangle r;
+    r.x = x;
+    r.y = y;
+    r.width = width;
+    r.height = height;
+    return r;
+}
+
 // 画文字
 void Text_Int(int b, int x, int y, int size, Color color) {
     const char* a = TextFormat("%d", b);
