@@ -74,17 +74,19 @@ void APP_UI_Game_DrawWorld(CtxUI* ctxUI) {
     }
 }
 
-void APP_UI_PanelTower_Open(CtxUI* ctxUI, void (*onClickStartHandle)(void)) {
-    PN_TowerMani* panel = (PN_TowerMani*)calloc(1, sizeof(PN_TowerMani));
-    panel->onClickStartHandle = onClickStartHandle;
-    ctxUI->pn_towerMani = panel;
-    PanelTower_Spawn(panel);
+void APP_UI_PanelTower_Open(CtxUI* ctxUI, Vector2 pos, void (*onClickStartHandle)(void)) {
+    PN_TowerMani* panel = ctxUI->pn_towerMani;
+    if (panel == NULL) {
+        panel = (PN_TowerMani*)calloc(1, sizeof(PN_TowerMani));
+        PN_TowerMani_Ctor(panel, onClickStartHandle);
+        ctxUI->pn_towerMani = panel;
+    }
+    PN_TowerMani_Init(panel, pos);
     printf("APP_UI_PanelTower_Open\r\n");
 }
 
-void APP_UI_PanelTower_Add(CtxUI* ctxUI, Vector2 pos, int typeID) {
-
-    PanelTower_AddEle(ctxUI->pn_towerMani, pos, typeID);
+void APP_UI_PanelTower_Add(CtxUI* ctxUI, int typeID, Color color) {
+    PanelTower_AddEle(ctxUI->pn_towerMani, typeID, color);
 }
 
 // panel 使panel存在

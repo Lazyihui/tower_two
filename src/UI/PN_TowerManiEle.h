@@ -10,27 +10,11 @@ typedef struct PN_TowerManiEle {
     Color color;
 } PN_TowerManiEle;
 
-PN_TowerManiEle PN_TowerManiEle_Init(int index, int typeID, Vector2 pos, Vector2 size) {
+PN_TowerManiEle PN_TowerManiEle_Init(int index, int typeID, Color color) {
 
     PN_TowerManiEle ele = (PN_TowerManiEle){0};
     ele.index = index;
     ele.index = typeID;
-    Color color;
-    switch (typeID) {
-    case 1: color = RED; break;
-    case 2: color = YELLOW; break;
-    case 3: color = GREEN; break;
-
-    default:
-        color = BLACK;
-        printf("err UI_PanelEle_CreatTowerType\r\n");
-        // Plog("ERR");
-        break;
-    }
-    ele.rect.height = size.y;
-    ele.rect.width = size.x;
-    ele.rect.x = pos.x;
-    ele.rect.y = pos.y;
     ele.color = color;
     return ele;
 }

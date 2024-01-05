@@ -54,8 +54,10 @@ int main() {
 
             if (IsKeyPressed(KEY_A)) {
 
-                APP_UI_PanelTower_Open(ctx->ctx_UI, &UI_PanelTower);
-                // APP_UI_PanelTower_Add(ctx->ctx_UI,,);
+                APP_UI_PanelTower_Open(ctx->ctx_UI, Vector2Zero(), &UI_PanelTower);
+                APP_UI_PanelTower_Add(ctx->ctx_UI, 1, GREEN);
+                APP_UI_PanelTower_Add(ctx->ctx_UI, 5, YELLOW);
+                APP_UI_PanelTower_Add(ctx->ctx_UI, 8, BLUE);
             }
         }
         //==== Draw World ====
