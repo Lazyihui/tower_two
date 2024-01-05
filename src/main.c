@@ -56,9 +56,12 @@ int main() {
             if (IsKeyPressed(KEY_A)) {
 
                 APP_UI_PanelTower_Open(ctx->ctx_UI, Vector2Zero(), &UI_PanelTower);
-                APP_UI_PanelTower_Add(ctx->ctx_UI, 1, GREEN);
-                APP_UI_PanelTower_Add(ctx->ctx_UI, 5, YELLOW);
-                APP_UI_PanelTower_Add(ctx->ctx_UI, 8, BLUE);
+                int manifest[3] = {1, 2, 3};
+                for (int i = 0; i < 3; i += 1) {
+                    int typeID = manifest[i];
+                    TM_Tower* towerTM = Template_GetTower(ctx->tpl, typeID);
+                    APP_UI_PanelTower_Add(ctx->ctx_UI, towerTM->typeID, towerTM->iconColor);
+                }
             }
         }
         //==== Draw World ====
