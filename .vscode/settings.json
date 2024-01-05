@@ -27,6 +27,7 @@
         "raygui.h": "c",
         "pn_login.h": "c",
         "e_camera.h": "c",
-        "e_cell.h": "c"
+        "e_cell.h": "c",
+        "import.h": "c"
     }
 }

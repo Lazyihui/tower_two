@@ -37,7 +37,7 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     //mst的血量减为0的情况
     for (int i = 0; i < ctx->rp_mst->count; i++) {
         E_Mst* mst = ctx->rp_mst->all[i];
-        if (mst->pos.y <= 18) {
+        if (mst->pos.y <=  -18*std_cell) {
             mst->isLive = false;
         }
     }
@@ -64,7 +64,6 @@ void B_Game_Draw(Ctx* ctx) {
     int mstLenth = ctx->rp_mst->count;
     for (int i = 0; i < mstLenth; i++) {
         E_Mst* mst = ctx->rp_mst->all[i];
-
         if (mst->isLive) {
             E_Mst_Draw(mst);
         }

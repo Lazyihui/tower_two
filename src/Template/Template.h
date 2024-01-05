@@ -13,9 +13,9 @@ typedef struct Template
     TM_Cell *cells;
     int cellLenth;
 
-//mst
+    //mst
     TM_Mst *msts;
-    int mstLenth;
+    int mstLenth; 
 
 }Template;
 
