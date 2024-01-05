@@ -9,11 +9,14 @@ static Ctx* ctx; // 静态区
 
 // 文本区
 void UI_Login_OnClicckStart() {
-    printf("login\r\n");
     APP_UI_Login_Close(ctx->ctx_UI);
     ctx->gameStatus = GAME_STATUS_GAME;
     B_Game_Enter(ctx);
-    printf("end");
+}
+
+void UI_PanelTower() {
+    // Plog("UI_PanelTower");
+    printf("UI_PanelTower");
 }
 
 int main() {
@@ -27,9 +30,9 @@ int main() {
     ctx_Inti(ctx);
     ctxUIInit(ctx->ctx_UI);
     APP_UI_Login_Open(ctx->ctx_UI, &UI_Login_OnClicckStart);
+    APP_UI_PanelTower_Open(ctx->ctx_UI, Vector2_New(0, 2), &UI_PanelTower);
+    // Plog("start Game %f\r\n", ctx->mstSpawnInterval);
 
-    Plog("start Game %f\r\n",ctx->mstSpawnInterval);
-    
     GuiLoadStyleCandy();
     while (!WindowShouldClose()) {
 
@@ -50,6 +53,16 @@ int main() {
             APP_UI_Game_Tick(ctx->ctx_UI, dt);
             B_Game_Tick(ctx, dt);
             assert(ctx->ctx_UI != NULL);
+            if (IsKeyPressed(KEY_A)) {
+                ctx->ctx_UI->PanelTower->isOpen = true;
+                for (int i = 0; i < 3; i++) {
+
+                    int typeID = ctx->ctx_UI->typeTower[i];
+                    PanelTower_AddEle(ctx->ctx_UI->PanelTower, Vector2_New(50, 50), typeID);
+                }
+            } else {
+                PanelTower_Close(ctx->ctx_UI->PanelTower);
+            }
         }
         //==== Draw World ====
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {

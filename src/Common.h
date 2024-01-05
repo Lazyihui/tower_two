@@ -1,12 +1,16 @@
 #ifndef COMMON_H__
 #define COMMON_H__
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "../include/raygui.h"
 #include "../include/raylib.h"
 #include "../include/raymath.h"
 #include "../include/style_candy.h"
 
-#define Plog(x,...) printf("%s:%d",__FILE__,__LINE__); printf(x,__VA_ARGS__)
+// #define Plog(x, ...)                                                                                                   \
+//     printf("%s:%d", __FILE__, __LINE__);                                                                               \
+//     printf(x, __VA_ARGS__);
 #define std_cell 10
 const int std_towerCell = std_cell * 2;
 
@@ -24,11 +28,19 @@ Vector2 Vector2_New(float x, float y) {
     return a;
 }
 
-//画文字
+// 画文字
 void Text_Int(int b, int x, int y, int size, Color color) {
     const char* a = TextFormat("%d", b);
     DrawText(a, x, y, size, color);
 }
 
-
+// 矩形和鼠标的交叉检测
+bool IsRectInsideMouseRec(Rectangle rect, Vector2 mousePos) {
+    if (mousePos.x >= rect.x && mousePos.x <= rect.x + rect.width && mousePos.y >= rect.y &&
+        mousePos.y <= rect.y + rect.height) {
+        return true;
+    } else {
+        return false;
+    }
+}
 #endif

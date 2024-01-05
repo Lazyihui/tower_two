@@ -5,6 +5,7 @@
 #include "../src/Common.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "E_TowerPanel.h"
 
 typedef struct CtxUI {
     PN_Login* pn_login;
@@ -14,6 +15,10 @@ typedef struct CtxUI {
     // slider
     Rectangle rectWorldHp;
     float value;
+
+    PanelTower* PanelTower;
+    int typeTower[3];
+
 } CtxUI;
 
 void ctxUIInit(CtxUI* ctxUI) {
@@ -25,6 +30,10 @@ void ctxUIInit(CtxUI* ctxUI) {
     ctxUI->rectWorldHp.x = 30;
     ctxUI->rectWorldHp.y = 60;
     ctxUI->value = 100;
+
+    for (int i = 0; i < 3; i++) {
+        ctxUI->typeTower[i] = i + 1;
+    }
 }
 
 // 释放
@@ -41,6 +50,7 @@ void APP_UI_Login_DrawUI(CtxUI* ctxUI) {
     if (ctxUI->pn_login != NULL) {
         PN_Login_Draw(ctxUI->pn_login);
     }
+    PanelTower_Draw(ctxUI->PanelTower);
 }
 
 // 画时间 金钱
@@ -61,6 +71,13 @@ void APP_UI_Game_Draw(CtxUI* ctxUI) {
 void APP_UI_Game_DrawWorld(CtxUI* ctxUI) {
     // 路
     DrawRectangle(std_cell * -5, std_cell * (int)-26.5, std_cell * 10, std_cell * 53, BROWN);
+}
+
+void APP_UI_PanelTower_Open(CtxUI* ctxUI, Vector2 cellPos, void (*onClickStartHandle)(void)) {
+    PanelTower* panel = (PanelTower*)calloc(1, sizeof(PanelTower));
+    panel->onClickStartHandle = onClickStartHandle;
+    PanelTower_Spawn(panel, cellPos);
+    ctxUI->PanelTower = panel;
 }
 
 // panel 使panel存在

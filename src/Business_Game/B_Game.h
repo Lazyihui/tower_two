@@ -26,7 +26,6 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     if (ctx->mstSpawnTimer <= 0) {
         D_Mst_Spawn(ctx, 1, Vector2_New(0, 28 * std_cell), dt);
         ctx->mstSpawnTimer = ctx->mstSpawnInterval;
-        printf("a");
     }
     // 移动
     for (int i = 0; i < ctx->rp_mst->count; i++) {
