@@ -9,9 +9,6 @@
 #include "TM_Tower.h"
 
 typedef struct Template {
-
-    // TODO: Level
-
     // cell
     TM_Cell* cells;
     int cellLenth;

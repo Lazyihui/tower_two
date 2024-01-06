@@ -26,7 +26,7 @@ void PN_TowerMani_Init(PN_TowerMani* panel, Vector2 pos) {
 
 void PanelTower_AddEle(PN_TowerMani* panel, int typeID, Color color) {
     int count = panel->eleCount;
-    PN_TowerManiEle ele = PN_TowerManiEle_Create(count, typeID, color);
+    PN_TowerManiEle ele = PN_TowerManiEle_Init(count, typeID, color);
     panel->element[count++] = ele;
     panel->eleCount = count;
 }

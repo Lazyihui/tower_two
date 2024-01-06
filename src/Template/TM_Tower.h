@@ -30,7 +30,6 @@ TM_Tower TM_Tower_Create(int typeID, int hp, int bulletTypeID, Color iconColor, 
     tm.worldColor = worldColor;
     tm.shapeType = shapeType;
     tm.size = size;
-    return tm;
 }
 
 #endif
