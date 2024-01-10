@@ -6,9 +6,23 @@
 void D_UI_Tower_Open(Ctx* ctx, void (*onClickStartHandle)(void)) {
 
     APP_UI_PanelTower_Open(ctx->ctx_UI, Vector2Zero(), onClickStartHandle);
-    APP_UI_PanelTower_Add(ctx->ctx_UI, 1, GREEN);
-    APP_UI_PanelTower_Add(ctx->ctx_UI, 5, YELLOW);
-    APP_UI_PanelTower_Add(ctx->ctx_UI, 8, BLUE);
+
+    int manifest[3] = {1, 2, 3};
+
+    for (int i = 0; i < 3; i++) {
+        int typeID = manifest[i];
+        TM_Tower* towerTM = Template_GetTower(ctx->tpl, typeID);
+
+        Plog("%d\r\n", towerTM->typeID);
+        APP_UI_PanelTower_Add(ctx->ctx_UI, towerTM->typeID, towerTM->iconColor);
+        
+        assert(towerTM!=NULL);
+
+    }
+
+    // APP_UI_PanelTower_Add(ctx->ctx_UI, 1, GREEN);
+    // APP_UI_PanelTower_Add(ctx->ctx_UI, 5, YELLOW);
+    // APP_UI_PanelTower_Add(ctx->ctx_UI, 8, BLUE);
 }
 
 void D_UI_Tower_Close(Ctx* ctx) {
@@ -16,11 +30,13 @@ void D_UI_Tower_Close(Ctx* ctx) {
 }
 
 void D_UI_Tower_toggle(Ctx* ctx, void (*onClickStartHandle)(void)) {
-
     if (APP_UI_PanelTower_IsOpen(ctx->ctx_UI)) {
         D_UI_Tower_Close(ctx);
-    } else
-        (D_UI_Tower_Open(ctx, onClickStartHandle));
+    } else {
+        D_UI_Tower_Open(ctx, onClickStartHandle);
+        PlogNoArg("b\r\n");
+
+    }
 }
 
 #endif

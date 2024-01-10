@@ -56,6 +56,7 @@ void ctx_Inti(Ctx* ctx) {
 
     // tpl
     Template* tpl = (Template*)calloc(1, sizeof(Template));
+    assert(tpl != NULL);
     Template_Cell_Init(tpl);
     Template_Mst_Init(tpl);
     Template_Tower_Init(tpl);

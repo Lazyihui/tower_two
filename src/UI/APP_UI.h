@@ -82,7 +82,6 @@ void APP_UI_PanelTower_Open(CtxUI* ctxUI, Vector2 pos, void (*onClickStartHandle
         ctxUI->pn_towerMani = panel;
     }
     PN_TowerMani_Init(panel, pos);
-    printf("APP_UI_PanelTower_Open\r\n");
 }
 
 void APP_UI_PanelTower_Close(CtxUI* ctxUI) {

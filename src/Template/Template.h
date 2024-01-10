@@ -63,12 +63,13 @@ void Template_Mst_Init(Template* tpl) {
 
 void Template_Tower_Init(Template* tpl) {
     tpl->towerLength = 0;
+    assert(tpl != NULL);
     tpl->towers = (TM_Tower*)calloc(1000, sizeof(TM_Tower));
-
+    assert(tpl->towers != NULL);
     TM_Tower* towers = tpl->towers;
     TM_Tower t1 = TM_Tower_Create(1, 1, 1, RED, RED, SHAPE_TYPE_CIRCLE, Vector2_New(std_cell, std_cell));
-    TM_Tower t2 = TM_Tower_Create(2, 1, 1, GREEN, GREEN, SHAPE_TYPE_CIRCLE, Vector2_New(std_cell, std_cell));
-    TM_Tower t3 = TM_Tower_Create(3, 1, 1, YELLOW, YELLOW, SHAPE_TYPE_RECT, Vector2_New(std_cell, std_cell));
+    TM_Tower t2 = TM_Tower_Create(2, 2, 1, GREEN, GREEN, SHAPE_TYPE_CIRCLE, Vector2_New(std_cell, std_cell));
+    TM_Tower t3 = TM_Tower_Create(3, 3, 1, YELLOW, YELLOW, SHAPE_TYPE_RECT, Vector2_New(std_cell, std_cell));
     towers[tpl->towerLength++] = t1;
     towers[tpl->towerLength++] = t2;
     towers[tpl->towerLength++] = t3;
@@ -103,11 +104,13 @@ TM_Mst* Template_GetMst(Template* tpl, int typeID) {
 
 TM_Tower* Template_GetTower(Template* tpl, int typeID) {
     for (int i = 0; i < tpl->towerLength; i++) {
+        assert(tpl != NULL);
+        assert(tpl->towers != NULL);
         if (tpl->towers[i].typeID == typeID) {
             return &tpl->towers[i];
         }
     }
-    Plog("No TypeID:%d", typeID);
+    Plog("No TypeID:%d\r\n", typeID);
     return NULL;
 }
 
