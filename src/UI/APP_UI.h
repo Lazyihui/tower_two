@@ -85,6 +85,19 @@ void APP_UI_PanelTower_Open(CtxUI* ctxUI, Vector2 pos, void (*onClickStartHandle
     printf("APP_UI_PanelTower_Open\r\n");
 }
 
+void APP_UI_PanelTower_Close(CtxUI* ctxUI) {
+    PanelTower_Close(ctxUI->pn_towerMani);
+}
+
+bool APP_UI_PanelTower_IsOpen(CtxUI* ctxUI) {
+    PN_TowerMani* panel = ctxUI->pn_towerMani;
+
+    if (panel == NULL) {
+        return false;
+    }
+    return panel->isOpen;
+}
+
 void APP_UI_PanelTower_Add(CtxUI* ctxUI, int typeID, Color color) {
     PanelTower_AddEle(ctxUI->pn_towerMani, typeID, color);
 }
