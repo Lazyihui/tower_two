@@ -64,7 +64,7 @@ void Template_Mst_Init(Template* tpl) {
 void Template_Tower_Init(Template* tpl) {
     tpl->towerLength = 0;
     assert(tpl != NULL);
-    tpl->towers = (TM_Tower*)calloc(1000, sizeof(TM_Tower));
+    tpl->towers = (TM_Tower*)calloc(10, sizeof(TM_Tower));
     assert(tpl->towers != NULL);
     TM_Tower* towers = tpl->towers;
     TM_Tower t1 = TM_Tower_Create(1, 1, 1, RED, RED, SHAPE_TYPE_CIRCLE, Vector2_New(std_cell, std_cell));
@@ -73,6 +73,7 @@ void Template_Tower_Init(Template* tpl) {
     towers[tpl->towerLength++] = t1;
     towers[tpl->towerLength++] = t2;
     towers[tpl->towerLength++] = t3;
+    Plog("%d\r\n",tpl->towerLength);
 }
 
 void Template_free(Template* tpl) {
