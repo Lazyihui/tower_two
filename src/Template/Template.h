@@ -73,7 +73,6 @@ void Template_Tower_Init(Template* tpl) {
     towers[tpl->towerLength++] = t1;
     towers[tpl->towerLength++] = t2;
     towers[tpl->towerLength++] = t3;
-    Plog("%d\r\n",tpl->towerLength);
 }
 
 void Template_free(Template* tpl) {

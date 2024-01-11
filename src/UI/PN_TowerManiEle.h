@@ -8,6 +8,7 @@ typedef struct PN_TowerManiEle {
     int index;
     Rectangle rect;
     Color color;
+    bool isClick;
 } PN_TowerManiEle;
 
 PN_TowerManiEle PN_TowerManiEle_Init(int index, int typeID, Color color) {

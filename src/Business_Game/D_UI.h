@@ -13,7 +13,6 @@ void D_UI_Tower_Open(Ctx* ctx, Vector2 pos,void (*onClickStartHandle)(void)) {
         int typeID = manifest[i];
         TM_Tower* towerTM = Template_GetTower(ctx->tpl, typeID);
 
-        Plog("%d\r\n", towerTM->typeID);
         APP_UI_PanelTower_Add(ctx->ctx_UI, towerTM->typeID, towerTM->iconColor);
 
         assert(towerTM!=NULL);
@@ -31,7 +30,6 @@ void D_UI_Tower_toggle(Ctx* ctx, Vector2 pos,void (*onClickStartHandle)(void)) {
         D_UI_Tower_Close(ctx);
     } else {
         D_UI_Tower_Open(ctx,pos ,onClickStartHandle);
-        PlogNoArg("b\r\n");
 
     }
 }

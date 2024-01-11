@@ -35,7 +35,6 @@ bool E_cell_IsMouseInsideClick(E_cell* cell, Vector2 mouseWorldPos, bool isMouse
     cell->isClick = IsMouseInsideRect(cell->pos, cell->size.x, cell->size.x, mouseWorldPos);
 
     if (cell->isClick && isMouseDown) {
-        PlogNoArg("true\r\n");
         return true;
     } else {
 
