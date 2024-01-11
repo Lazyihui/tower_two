@@ -14,10 +14,7 @@ void UI_Login_OnClicckStart() {
     B_Game_Enter(ctx);
 }
 
-void UI_PanelTower() {
-    // Plog("UI_PanelTower");
-    printf("UI_PanelTower");
-}
+
 
 int main() {
     ctx = (Ctx*)calloc(1, sizeof(Ctx));
@@ -54,10 +51,7 @@ int main() {
             APP_UI_Game_Tick(ctx->ctx_UI, dt);
             B_Game_Tick(ctx, dt);
             // 格子和鼠标的交叉检测，得到格子的ID
-            if (IsKeyPressed(KEY_A)) {
-
-                D_UI_Tower_toggle(ctx, &UI_PanelTower);
-            }
+            
         }
         //==== Draw World ====
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {

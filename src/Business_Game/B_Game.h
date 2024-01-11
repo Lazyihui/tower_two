@@ -4,6 +4,13 @@
 #include "D_Cell.h"
 #include "D_Mst.h"
 #include "import.h"
+#include "D_UI.h"
+
+void UI_PanelTower() {
+    // Plog("UI_PanelTower");
+    printf("UI_PanelTower");
+}
+
 void B_Game_Enter(Ctx* ctx) {
 
     // 生成格子
@@ -49,7 +56,16 @@ void B_Game_Tick(Ctx* ctx, float dt) {
         }
     }
     // cellToTower
-    D_Cell_ToTower(ctx);
+    for (int i = 0; i < ctx->rp_Cell->count; i++) {
+        E_cell* cell = ctx->rp_Cell->all[i];
+        cell->isClick = E_cell_IsMouseInsideClick(cell, ctx->input->mouseWorldPos, ctx->input->isMouseDown);
+
+        if (cell->isClick) {
+
+            cell->isCellToTower = true;
+            D_UI_Tower_toggle(ctx, Vector2_New(cell->pos.x - 1.5*std_cell, cell->pos.y), &UI_PanelTower);
+        }
+    }
 }
 
 void B_Game_Draw(Ctx* ctx) {

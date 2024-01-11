@@ -52,10 +52,11 @@ void PanelTower_Draw(PN_TowerMani* panel) {
         return;
     } else {
         Vector2 startPos = panel->startPos;
-        DrawRectangleV(startPos, Vector2_New(std_cell + 4, panel->eleCount * std_cell + 4), BLACK);
+        DrawRectangleV(Vector2_New(startPos.x - 1, startPos.y - 1),
+                       Vector2_New(std_cell + 2, panel->eleCount * std_cell + 7), BLACK);
         for (int i = 0; i < panel->eleCount; i++) {
             PN_TowerManiEle* ele = &panel->element[i];
-            Rectangle eleRect = RectangleNew(startPos.x, startPos.y + (panel->gapY + std_cell) * i , std_cell, std_cell);
+            Rectangle eleRect = RectangleNew(startPos.x, startPos.y + (panel->gapY + std_cell) * i, std_cell, std_cell);
             ele->rect = eleRect;
             PN_TowerManiEle_Draw(ele);
             // printf("PanelTower_Draw\r\n");

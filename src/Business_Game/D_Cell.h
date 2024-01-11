@@ -11,18 +11,18 @@ void D_Cell_Spawn(Ctx* ctx, int typeID, Vector2 pos) {
     }
 }
 
-void D_Cell_ToTower(Ctx* ctx) {
-    for (int i = 0; i < ctx->rp_Cell->count; i++) {
-        E_cell* cell = ctx->rp_Cell->all[i];
-        assert(cell != NULL);
-        cell->isClick = E_cell_IsMouseInsideClick(cell, ctx->input->mouseWorldPos, ctx->input->isMouseDown);
-        
-        if (cell->isClick) {
+// void  D_Cell_ToTower(Ctx* ctx) {
+//     for (int i = 0; i < ctx->rp_Cell->count; i++) {
+//         E_cell* cell = ctx->rp_Cell->all[i];
+//         cell->isClick = E_cell_IsMouseInsideClick(cell, ctx->input->mouseWorldPos, ctx->input->isMouseDown);
 
-            cell->isCellToTower = true;
-            
-        }
-    }
-}
+//         if (cell->isClick) {
+
+//             cell->isCellToTower = true;
+
+
+//         }
+//     }
+// }
 
 #endif

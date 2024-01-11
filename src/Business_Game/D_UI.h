@@ -3,9 +3,9 @@
 
 #include "import.h"
 
-void D_UI_Tower_Open(Ctx* ctx, void (*onClickStartHandle)(void)) {
+void D_UI_Tower_Open(Ctx* ctx, Vector2 pos,void (*onClickStartHandle)(void)) {
 
-    APP_UI_PanelTower_Open(ctx->ctx_UI, Vector2Zero(), onClickStartHandle);
+    APP_UI_PanelTower_Open(ctx->ctx_UI, pos, onClickStartHandle);
 
     int manifest[3] = {1, 2, 3};
 
@@ -26,11 +26,11 @@ void D_UI_Tower_Close(Ctx* ctx) {
     APP_UI_PanelTower_Close(ctx->ctx_UI);
 }
 
-void D_UI_Tower_toggle(Ctx* ctx, void (*onClickStartHandle)(void)) {
+void D_UI_Tower_toggle(Ctx* ctx, Vector2 pos,void (*onClickStartHandle)(void)) {
     if (APP_UI_PanelTower_IsOpen(ctx->ctx_UI)) {
         D_UI_Tower_Close(ctx);
     } else {
-        D_UI_Tower_Open(ctx, onClickStartHandle);
+        D_UI_Tower_Open(ctx,pos ,onClickStartHandle);
         PlogNoArg("b\r\n");
 
     }
