@@ -19,7 +19,7 @@ typedef struct Ctx {
     E_Camera cam;
 
     // input
-    E_Input *input;
+    E_Input* input;
 
     // UI
     CtxUI* ctx_UI;
@@ -53,10 +53,9 @@ void ctx_Inti(Ctx* ctx) {
     // camera
     CameraEntity_Init(&ctx->cam, ctx->windowWidth, ctx->windowheight);
 
-    //input
-    E_Input *input=(E_Input*)calloc(1,sizeof(E_Input));
-    
-    ctx->input=input;
+    // input
+    E_Input* input = (E_Input*)calloc(1, sizeof(E_Input));
+    ctx->input = input;
 
     // UI
     CtxUI* ctx_UI = (CtxUI*)calloc(1, sizeof(CtxUI));
@@ -91,6 +90,7 @@ void ctx_Inti(Ctx* ctx) {
 void ctx_Free(Ctx* ctx) {
     free(ctx->ctx_UI);
     Template_free(ctx->tpl);
+    free(ctx->input);
     free(ctx->s_id);
     RP_Cell_Free(ctx->rp_Cell);
     RP_Mst_Free(ctx->rp_mst);
