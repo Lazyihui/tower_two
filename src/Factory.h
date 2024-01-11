@@ -18,6 +18,8 @@ E_cell* Factory_Create_Cell(Ctx* ctx, int typeID, Vector2 pos) {
     cell->shapeType = tm->shapeType;
     cell->size = tm->size;
     cell->color = tm->color;
+    cell->isCellToTower=false;
+    cell->isClick=false;
 
     return cell;
 }

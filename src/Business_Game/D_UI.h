@@ -15,14 +15,11 @@ void D_UI_Tower_Open(Ctx* ctx, void (*onClickStartHandle)(void)) {
 
         Plog("%d\r\n", towerTM->typeID);
         APP_UI_PanelTower_Add(ctx->ctx_UI, towerTM->typeID, towerTM->iconColor);
-        
+
         assert(towerTM!=NULL);
 
     }
 
-    // APP_UI_PanelTower_Add(ctx->ctx_UI, 1, GREEN);
-    // APP_UI_PanelTower_Add(ctx->ctx_UI, 5, YELLOW);
-    // APP_UI_PanelTower_Add(ctx->ctx_UI, 8, BLUE);
 }
 
 void D_UI_Tower_Close(Ctx* ctx) {

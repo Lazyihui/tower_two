@@ -45,6 +45,7 @@ int main() {
 
         //==== Input ====
         // if (APP_UI_Login_Click(ctx->ctx_UI)) {
+        E_Input_Process(ctx->input, Vector2_New(ctx->windowWidth / 2, ctx->windowheight / 2));
 
         // }
         //==== Logic Tick ====
@@ -52,11 +53,10 @@ int main() {
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
             APP_UI_Game_Tick(ctx->ctx_UI, dt);
             B_Game_Tick(ctx, dt);
-
+            // 格子和鼠标的交叉检测，得到格子的ID
             if (IsKeyPressed(KEY_A)) {
 
-               D_UI_Tower_toggle(ctx,&UI_PanelTower);
-               
+                D_UI_Tower_toggle(ctx, &UI_PanelTower);
             }
         }
         //==== Draw World ====

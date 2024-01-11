@@ -10,10 +10,10 @@
 #include "../include/style_candy.h"
 
 #define PlogNoArg(x)                                                                                                   \
-    printf("%s:%d ", __FILE__, __LINE__);                                                                               \
+    printf("%s:%d ", __FILE__, __LINE__);                                                                              \
     printf(x)
 #define Plog(x, ...)                                                                                                   \
-    printf("%s:%d ", __FILE__, __LINE__);                                                                               \
+    printf("%s:%d ", __FILE__, __LINE__);                                                                              \
     printf(x, __VA_ARGS__)
 
 #define std_cell 10
@@ -49,7 +49,7 @@ void Text_Int(int b, int x, int y, int size, Color color) {
 }
 
 // 矩形和鼠标的交叉检测
-bool IsRectInsideMouseRec(Rectangle rect, Vector2 mousePos) {
+bool IsMouseInsiderectRec(Rectangle rect, Vector2 mousePos) {
     if (mousePos.x >= rect.x && mousePos.x <= rect.x + rect.width && mousePos.y >= rect.y &&
         mousePos.y <= rect.y + rect.height) {
         return true;
@@ -57,4 +57,14 @@ bool IsRectInsideMouseRec(Rectangle rect, Vector2 mousePos) {
         return false;
     }
 }
+bool IsMouseInsideRect(Vector2 rectPos, int width, int height, Vector2 mousePos) {
+    if (mousePos.x >= rectPos.x && mousePos.x <= rectPos.x + width && mousePos.y >= rectPos.y &&
+        mousePos.y <= rectPos.y + height) {
+        return true;
+    } else {
+
+        return false;
+    }
+}
+
 #endif

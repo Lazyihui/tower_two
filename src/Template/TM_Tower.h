@@ -13,7 +13,7 @@ typedef struct TM_Tower {
 
     // UI
     Color iconColor;
-    
+
     // Draw
     Color worldColor;
     ShapeType shapeType;
@@ -21,7 +21,8 @@ typedef struct TM_Tower {
 
 } TM_Tower;
 
-TM_Tower TM_Tower_Create(int typeID, int hp, int bulletTypeID, Color iconColor, Color worldColor, ShapeType shapeType, Vector2 size) {
+TM_Tower TM_Tower_Create(int typeID, int hp, int bulletTypeID, Color iconColor, Color worldColor, ShapeType shapeType,
+                         Vector2 size) {
     TM_Tower tm;
     tm.typeID = typeID;
     tm.hp = hp;

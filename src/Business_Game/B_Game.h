@@ -1,10 +1,9 @@
-#ifndef  BUSINESS_B_GAME_H__
-#define  BUSINESS_B_GAME_H__
+#ifndef BUSINESS_B_GAME_H__
+#define BUSINESS_B_GAME_H__
 
 #include "D_Cell.h"
 #include "D_Mst.h"
 #include "import.h"
-
 void B_Game_Enter(Ctx* ctx) {
 
     // 生成格子
@@ -33,14 +32,14 @@ void B_Game_Tick(Ctx* ctx, float dt) {
         E_Mst* mst = ctx->rp_mst->all[i];
         D_Mst_Move(ctx, mst, dt);
     }
-    //mst的血量减为0的情况
+    // mst的血量减为0的情况
     for (int i = 0; i < ctx->rp_mst->count; i++) {
         E_Mst* mst = ctx->rp_mst->all[i];
-        if (mst->pos.y <=  -18*std_cell) {
+        if (mst->pos.y <= -18 * std_cell) {
             mst->isLive = false;
         }
     }
-    //mst移除
+    // mst移除
     for (int i = ctx->rp_mst->count - 1; i >= 0; i--) {
         E_Mst* mst = ctx->rp_mst->all[i];
         if (!mst->isLive) {
@@ -49,6 +48,8 @@ void B_Game_Tick(Ctx* ctx, float dt) {
             ctx->rp_mst->count -= 1;
         }
     }
+    // cellToTower
+    D_Cell_ToTower(ctx);
 }
 
 void B_Game_Draw(Ctx* ctx) {

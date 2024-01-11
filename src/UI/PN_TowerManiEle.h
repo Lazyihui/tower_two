@@ -21,7 +21,7 @@ PN_TowerManiEle PN_TowerManiEle_Init(int index, int typeID, Color color) {
 
 bool PN_TowerManiEle_IsClick(PN_TowerManiEle* ele, Vector2 mouseWroldPos, bool isMouseDown) {
 
-    if (IsRectInsideMouseRec) {
+    if (IsMouseInsiderectRec) {
         return true;
     } else {
         return false;

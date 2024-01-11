@@ -35,7 +35,7 @@ void Template_Cell_Init(Template* tpl) {
     c1.color = BLUE;
     c1.size.x = std_towerCell;
     c1.size.y = std_towerCell;
-
+    
     cell[tpl->cellLenth++] = c1;
 }
 
