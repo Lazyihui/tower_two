@@ -61,4 +61,24 @@ E_Tower* Factory_Create_Tower(Ctx* ctx, int typeID, Vector2 pos) {
     return tower;
 }
 
+E_Blt* Factory_Create_Blt(Ctx* ctx, int typeID, Vector2 moveAxis, Vector2 pos) {
+    TM_Blt* tm = Template_GetBlt(ctx->tpl, typeID);
+    if (tm == NULL) {
+        PlogNoArg("return NUll");
+        return NULL;
+    }
+    E_Blt* blt = (E_Blt*)calloc(1, sizeof(E_Blt));
+    blt->ID = ctx->s_id->bltRecord++;
+    blt->color = tm->color;
+    blt->hurtRange = tm->hurtRange;
+    blt->moveAxis = moveAxis;
+    blt->isInside = false;
+    blt->isLive = false;
+    blt->pos = pos;
+    blt->radius = tm->radius;
+    blt->speed = tm->speed;
+    blt->typeID = tm->typeID;
+    return blt;
+}
+
 #endif

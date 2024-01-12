@@ -44,6 +44,8 @@ typedef struct Ctx {
     // RP tower
     RP_Tower* rp_tower;
 
+    // RP blt
+    RP_Blt* rp_blt;
 } Ctx;
 
 void ctx_Inti(Ctx* ctx) {
@@ -94,6 +96,11 @@ void ctx_Inti(Ctx* ctx) {
     RP_Tower* rp_tower = (RP_Tower*)calloc(1, sizeof(RP_Tower));
     RP_Tower_Init(rp_tower);
     ctx->rp_tower = rp_tower;
+
+    // RP blt
+    RP_Blt* rp_blt = (RP_Blt*)calloc(1, sizeof(RP_Blt));
+    RP_Blt_Inti(rp_blt);
+    ctx->rp_blt = rp_blt;
 }
 
 void ctx_Free(Ctx* ctx) {
@@ -104,5 +111,6 @@ void ctx_Free(Ctx* ctx) {
     RP_Cell_Free(ctx->rp_Cell);
     RP_Mst_Free(ctx->rp_mst);
     RP_Tower_Free(ctx->rp_tower);
+    RP_Blt_Free(ctx->rp_blt);
 }
 #endif

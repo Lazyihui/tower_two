@@ -3,7 +3,7 @@
 
 #include "import.h"
 
-typedef struct E_blt {
+typedef struct E_Blt {
     int typeID;
     int ID;
     Color color;
@@ -14,9 +14,9 @@ typedef struct E_blt {
     float hurtRange;
     bool isLive;
     bool isInside;
-} E_blt;
+} E_Blt;
 
-void E_Bullet_Draw(E_blt* blt) {
+void E_Bullet_Draw(E_Blt* blt) {
     DrawCircle(blt->pos.x, blt->pos.y, blt->radius, blt->color);
 }
 
