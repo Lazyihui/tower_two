@@ -3,7 +3,13 @@
 
 #include "import.h"
 
-bool D_Tower_IsCellToTower(){}
+void D_Tower_Spraw(Ctx* ctx, int typeID, Vector2 pos) {
 
+    E_Tower* tower = Factory_Create_Tower(ctx, typeID, pos);
+    if (tower != NULL) {
+        tower->isLive = true;
+        RP_Tower_Add(ctx->rp_tower, tower);
+    }
+}
 
 #endif

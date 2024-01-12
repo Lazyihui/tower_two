@@ -3,5 +3,6 @@
 
 #include "RP_Cell.h"
 #include "RP_Mst.h"
+#include "RP_Tower.h"
 
 #endif

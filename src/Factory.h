@@ -18,8 +18,8 @@ E_cell* Factory_Create_Cell(Ctx* ctx, int typeID, Vector2 pos) {
     cell->shapeType = tm->shapeType;
     cell->size = tm->size;
     cell->color = tm->color;
-    cell->isCellToTower=false;
-    cell->isClick=false;
+    cell->isCellToTower = false;
+    cell->isClick = false;
 
     return cell;
 }
@@ -38,10 +38,27 @@ E_Mst* Factory_Create_Mst(Ctx* ctx, int typeID, Vector2 pos, Vector2 moveAxis) {
     mst->radius = tm->radius;
     mst->speed = tm->speed;
     mst->moveAxis = moveAxis;
-    mst->isLive=true;
-    
+    mst->isLive = true;
 
     return mst;
+}
+
+E_Tower* Factory_Create_Tower(Ctx* ctx, int typeID, Vector2 pos) {
+    TM_Tower* tm = Template_GetTower(ctx->tpl, typeID);
+    if (tm == NULL) {
+        PlogNoArg("return NUll");
+        return NULL;
+    }
+    E_Tower* tower = (E_Tower*)calloc(1, sizeof(E_Tower));
+    tower->ID = ctx->s_id->towerRecord++;
+    tower->color = tm->worldColor;
+    tower->hurt = tm->hurt;
+    tower->typeID = tm->typeID;
+    tower->pos = pos;
+    tower->size = tm->size;
+    tower->isLive = false;
+
+    return tower;
 }
 
 #endif

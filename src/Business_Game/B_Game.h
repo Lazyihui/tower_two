@@ -5,6 +5,7 @@
 #include "D_Mst.h"
 #include "import.h"
 #include "D_UI.h"
+#include "D_Tower.h"
 
 void UI_PanelTower() {
     // Plog("UI_PanelTower");
@@ -57,7 +58,7 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     }
     E_Input* input = ctx->input;
 
-    // cellToTower
+    // cellToTower 点击cell打开panel
     for (int i = 0; i < ctx->rp_Cell->count; i++) {
         E_cell* cell = ctx->rp_Cell->all[i];
         bool isClickCell = E_cell_IsMouseInsideClick(cell, ctx->input->mouseWorldPos, ctx->input->isMouseDown);
@@ -66,12 +67,17 @@ void B_Game_Tick(Ctx* ctx, float dt) {
         }
     }
 
-    // panel click
+    // panel click 点击panel里的ele然后panel消失 并且在此位置上生产点击ele tower
     int clickedCellID;
     int clickTowerTypeID;
     bool isClickPanel = APP_UI_PanelTowerIsClick(ctx->ctx_UI, input->mouseWorldPos, input->isMouseDown, &clickedCellID,
                                                  &clickTowerTypeID);
     if (isClickPanel) {
+
+        Vector2 pos = Vector2_New(ctx->rp_Cell->all[clickedCellID]->pos.x, ctx->rp_Cell->all[clickedCellID]->pos.y);
+        printf("%f,%f", pos.x, pos.y);
+        D_Tower_Spraw(ctx, clickTowerTypeID, pos);
+
         APP_UI_PanelTower_Close(ctx->ctx_UI);
     }
 }
@@ -90,6 +96,15 @@ void B_Game_Draw(Ctx* ctx) {
         E_Mst* mst = ctx->rp_mst->all[i];
         if (mst->isLive) {
             E_Mst_Draw(mst);
+        }
+    }
+
+    // Draw Tower
+    int towerLenth = ctx->rp_tower->count;
+    for (int i = 0; i < towerLenth; i++) {
+        E_Tower* tower = ctx->rp_tower->all[i];
+        if (tower->isLive) {
+            E_Tower_Draw(tower);
         }
     }
 }
