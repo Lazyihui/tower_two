@@ -7,6 +7,7 @@
 #include "TM_Cell.h"
 #include "TM_Mst.h"
 #include "TM_Tower.h"
+#include "TM_Blt.h"
 
 typedef struct Template {
     // cell
@@ -20,6 +21,10 @@ typedef struct Template {
     // Tower
     TM_Tower* towers;
     int towerLength;
+
+    // blt
+    TM_Blt* blts;
+    int bltLength;
 
 } Template;
 
@@ -35,7 +40,7 @@ void Template_Cell_Init(Template* tpl) {
     c1.color = BLUE;
     c1.size.x = std_towerCell;
     c1.size.y = std_towerCell;
-    
+
     cell[tpl->cellLenth++] = c1;
 }
 
@@ -67,18 +72,31 @@ void Template_Tower_Init(Template* tpl) {
     tpl->towers = (TM_Tower*)calloc(10, sizeof(TM_Tower));
     assert(tpl->towers != NULL);
     TM_Tower* towers = tpl->towers;
-    TM_Tower t1 = TM_Tower_Create(1, 1, 1, RED, RED, SHAPE_TYPE_CIRCLE, Vector2_New(std_cell*2, std_cell*2),1);
-    TM_Tower t2 = TM_Tower_Create(2, 2, 1, GREEN, GREEN, SHAPE_TYPE_CIRCLE, Vector2_New(std_cell*2, std_cell*2),2);
-    TM_Tower t3 = TM_Tower_Create(3, 3, 1, YELLOW, YELLOW, SHAPE_TYPE_RECT, Vector2_New(std_cell*2, std_cell*2),3);
+    TM_Tower t1 = TM_Tower_Create(1, 1, 1, RED, RED, SHAPE_TYPE_CIRCLE, Vector2_New(std_cell * 2, std_cell * 2), 1);
+    TM_Tower t2 = TM_Tower_Create(2, 2, 1, GREEN, GREEN, SHAPE_TYPE_CIRCLE, Vector2_New(std_cell * 2, std_cell * 2), 2);
+    TM_Tower t3 = TM_Tower_Create(3, 3, 1, YELLOW, YELLOW, SHAPE_TYPE_RECT, Vector2_New(std_cell * 2, std_cell * 2), 3);
     towers[tpl->towerLength++] = t1;
     towers[tpl->towerLength++] = t2;
     towers[tpl->towerLength++] = t3;
+}
+
+void Template_Blt_Init(Template* tpl) {
+    tpl->bltLength = 0;
+    tpl->blts = (TM_Blt*)calloc(1000, sizeof(TM_Blt));
+    TM_Blt* blt = tpl->blts;
+    TM_Blt blt1 = TM_Blt_Create(RED, 10, 10, 50,1);
+    TM_Blt blt2 = TM_Blt_Create(GRAY, 10, 20, 30,2);
+    TM_Blt blt3 = TM_Blt_Create(GREEN, 10, 30, 10,3);
+    blt[tpl->bltLength++] = blt1;
+    blt[tpl->bltLength++] = blt2;
+    blt[tpl->bltLength++] = blt3;
 }
 
 void Template_free(Template* tpl) {
     free(tpl->cells);
     free(tpl->msts);
     free(tpl->towers);
+    free(tpl->blts);
     free(tpl);
 }
 
@@ -113,5 +131,13 @@ TM_Tower* Template_GetTower(Template* tpl, int typeID) {
     Plog("No TypeID:%d\r\n", typeID);
     return NULL;
 }
-
+TM_Blt* Template_GetBlt(Template* tpl, int typeID) {
+    for (int i = 0; i < tpl->bltLength; i++) {
+        if (tpl->blts[i].typeID == typeID) {
+            return &tpl->blts[i];
+        }
+    }
+    Plog("No TypeID:%d\r\n", typeID);
+    return NULL;
+}
 #endif

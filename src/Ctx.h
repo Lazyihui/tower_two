@@ -70,6 +70,7 @@ void ctx_Inti(Ctx* ctx) {
     Template_Cell_Init(tpl);
     Template_Mst_Init(tpl);
     Template_Tower_Init(tpl);
+    Template_Blt_Init(tpl);
     ctx->tpl = tpl;
 
     // s_id
@@ -103,6 +104,5 @@ void ctx_Free(Ctx* ctx) {
     RP_Cell_Free(ctx->rp_Cell);
     RP_Mst_Free(ctx->rp_mst);
     RP_Tower_Free(ctx->rp_tower);
-
 }
 #endif
