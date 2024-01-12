@@ -57,6 +57,7 @@ bool IsMouseInsiderectRec(Rectangle rect, Vector2 mousePos) {
         return false;
     }
 }
+
 bool IsMouseInsideRect(Vector2 rectPos, int width, int height, Vector2 mousePos) {
     if (mousePos.x >= rectPos.x && mousePos.x <= rectPos.x + width && mousePos.y >= rectPos.y &&
         mousePos.y <= rectPos.y + height) {

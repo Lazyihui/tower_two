@@ -15,14 +15,15 @@ PN_TowerManiEle PN_TowerManiEle_Init(int index, int typeID, Color color) {
 
     PN_TowerManiEle ele = (PN_TowerManiEle){0};
     ele.index = index;
-    ele.index = typeID;
+    ele.typeID = typeID;
     ele.color = color;
     return ele;
 }
 
 bool PN_TowerManiEle_IsClick(PN_TowerManiEle* ele, Vector2 mouseWroldPos, bool isMouseDown) {
+    
 
-    if (IsMouseInsiderectRec) {
+    if (IsMouseInsiderectRec(ele->rect, mouseWroldPos) && isMouseDown) {
         return true;
     } else {
         return false;

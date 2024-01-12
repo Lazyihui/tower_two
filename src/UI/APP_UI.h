@@ -30,9 +30,18 @@ void ctxUIInit(CtxUI* ctxUI) {
     ctxUI->rectWorldHp.y = 60;
     ctxUI->value = 100;
 
-    
     for (int i = 0; i < 3; i++) {
         ctxUI->typeTower[i] = i + 1;
+    }
+}
+
+bool APP_UI_PanelTowerIsClick(CtxUI* ctxUI, Vector2 mouseWorldPos, bool isMouseDown, int *outCellID, int *outTowerTypeID) {
+    PN_TowerMani* panel = ctxUI->pn_towerMani;
+    if (panel != NULL) {
+        *outCellID = panel->clickedCellID;
+        return PanelTower_Isclick(panel, mouseWorldPos, isMouseDown, outTowerTypeID);
+    } else {
+        return false;
     }
 }
 
@@ -70,19 +79,20 @@ void APP_UI_Game_Draw(CtxUI* ctxUI) {
 void APP_UI_Game_DrawWorld(CtxUI* ctxUI) {
     // 路
     DrawRectangle(std_cell * -5, std_cell * (int)-26.5, std_cell * 10, std_cell * 53, BROWN);
+    // panel tower
     if (ctxUI->pn_towerMani != NULL) {
         PanelTower_Draw(ctxUI->pn_towerMani);
     }
 }
 
-void APP_UI_PanelTower_Open(CtxUI* ctxUI, Vector2 pos, void (*onClickStartHandle)(void)) {
+void APP_UI_PanelTower_Open(CtxUI* ctxUI, Vector2 pos, int cellID,void (*onClickStartHandle)(void)) {
     PN_TowerMani* panel = ctxUI->pn_towerMani;
     if (panel == NULL) {
         panel = (PN_TowerMani*)calloc(1, sizeof(PN_TowerMani));
         PN_TowerMani_Ctor(panel, onClickStartHandle);
         ctxUI->pn_towerMani = panel;
     }
-    PN_TowerMani_Init(panel, pos);
+    PN_TowerMani_Init(panel, pos,cellID);
 }
 
 void APP_UI_PanelTower_Close(CtxUI* ctxUI) {

@@ -55,31 +55,24 @@ void B_Game_Tick(Ctx* ctx, float dt) {
             ctx->rp_mst->count -= 1;
         }
     }
+    E_Input* input = ctx->input;
+
     // cellToTower
     for (int i = 0; i < ctx->rp_Cell->count; i++) {
         E_cell* cell = ctx->rp_Cell->all[i];
-        E_Input* input = ctx->input;
-        cell->isClick = E_cell_IsMouseInsideClick(cell, ctx->input->mouseWorldPos, ctx->input->isMouseDown);
-
-        if (cell->isClick) {
-            // cell->isCellToTower = true;
-            D_UI_Tower_toggle(ctx, Vector2_New(cell->pos.x - 1.5 * std_cell, cell->pos.y), &UI_PanelTower);
-           
-            PN_TowerMani* panel = ctx->ctx_UI->pn_towerMani;
-           
-            ctx->s_id->cellIDRecord = cell->ID;
-
-            if (panel->isOpen) {
-                for (int j = 0; j < panel->eleCount; j++) {
-                    
-                }
-            }
-            // assert(ctx->ctx_UI->pn_towerMani != NULL);
-            // assert(panel != NULL);
-            // for (int j = 0; j < panel->eleCount; j++) {
-            //     PlogNoArg("a");
-            // }
+        bool isClickCell = E_cell_IsMouseInsideClick(cell, ctx->input->mouseWorldPos, ctx->input->isMouseDown);
+        if (isClickCell) {
+            D_UI_Tower_toggle(ctx, Vector2_New(cell->pos.x - 1.5 * std_cell, cell->pos.y), cell->ID, &UI_PanelTower);
         }
+    }
+
+    // panel click
+    int clickedCellID;
+    int clickTowerTypeID;
+    bool isClickPanel = APP_UI_PanelTowerIsClick(ctx->ctx_UI, input->mouseWorldPos, input->isMouseDown, &clickedCellID,
+                                                 &clickTowerTypeID);
+    if (isClickPanel) {
+        APP_UI_PanelTower_Close(ctx->ctx_UI);
     }
 }
 

@@ -3,9 +3,9 @@
 
 #include "import.h"
 
-void D_UI_Tower_Open(Ctx* ctx, Vector2 pos,void (*onClickStartHandle)(void)) {
+void D_UI_Tower_Open(Ctx* ctx, Vector2 pos,int cellID,void (*onClickStartHandle)(void)) {
 
-    APP_UI_PanelTower_Open(ctx->ctx_UI, pos, onClickStartHandle);
+    APP_UI_PanelTower_Open(ctx->ctx_UI, pos,cellID ,onClickStartHandle);
 
     int manifest[3] = {1, 2, 3};
 
@@ -25,12 +25,11 @@ void D_UI_Tower_Close(Ctx* ctx) {
     APP_UI_PanelTower_Close(ctx->ctx_UI);
 }
 
-void D_UI_Tower_toggle(Ctx* ctx, Vector2 pos,void (*onClickStartHandle)(void)) {
+void D_UI_Tower_toggle(Ctx* ctx, Vector2 pos,int cellID,void (*onClickStartHandle)(void)) {
     if (APP_UI_PanelTower_IsOpen(ctx->ctx_UI)) {
         D_UI_Tower_Close(ctx);
     } else {
-        D_UI_Tower_Open(ctx,pos ,onClickStartHandle);
-
+        D_UI_Tower_Open(ctx,pos ,cellID,onClickStartHandle);
     }
 }
 
