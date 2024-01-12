@@ -64,19 +64,22 @@ void B_Game_Tick(Ctx* ctx, float dt) {
         if (cell->isClick) {
             // cell->isCellToTower = true;
             D_UI_Tower_toggle(ctx, Vector2_New(cell->pos.x - 1.5 * std_cell, cell->pos.y), &UI_PanelTower);
-        }
+           
+            PN_TowerMani* panel = ctx->ctx_UI->pn_towerMani;
+           
+            ctx->s_id->cellIDRecord = cell->ID;
 
-        // for (int j = 0; ctx->ctx_UI->pn_towerMani->eleCount; j++) {
-        //     assert(ctx->ctx_UI->pn_towerMani != NULL);
-        //     PlogNoArg("a\r\n");
-        //     PN_TowerManiEle* ele = &ctx->ctx_UI->pn_towerMani->element[i];
-        //     ele->isClick = PN_TowerManiEle_IsClick(ele, input->mouseWorldPos, input->isMouseDown);
-        //     if (ele->isClick) {
-        //         cell->isCellToTower = true;
-        //         D_UI_Tower_Close(ctx);
-        //         PlogNoArg("isCellToTower\r\n");
-        //     }
-        // }
+            if (panel->isOpen) {
+                for (int j = 0; j < panel->eleCount; j++) {
+                    
+                }
+            }
+            // assert(ctx->ctx_UI->pn_towerMani != NULL);
+            // assert(panel != NULL);
+            // for (int j = 0; j < panel->eleCount; j++) {
+            //     PlogNoArg("a");
+            // }
+        }
     }
 }
 

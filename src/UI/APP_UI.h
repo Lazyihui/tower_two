@@ -30,6 +30,7 @@ void ctxUIInit(CtxUI* ctxUI) {
     ctxUI->rectWorldHp.y = 60;
     ctxUI->value = 100;
 
+    
     for (int i = 0; i < 3; i++) {
         ctxUI->typeTower[i] = i + 1;
     }
