@@ -76,21 +76,30 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     bool isClickPanel = APP_UI_PanelTowerIsClick(ctx->ctx_UI, input->mouseWorldPos, input->isMouseDown, &clickedCellID,
                                                  &clickTowerTypeID);
     if (isClickPanel) {
+        ctx->rp_Cell->all[clickedCellID]->isCellToTower = true;
         Vector2 pos = Vector2_New(ctx->rp_Cell->all[clickedCellID]->pos.x, ctx->rp_Cell->all[clickedCellID]->pos.y);
         D_Tower_Spraw(ctx, clickTowerTypeID, pos, &clickTowerID);
         APP_UI_PanelTower_Close(ctx->ctx_UI);
     }
-    // blt pos and moveAxis
 
-    // blt spawn
-    for (int i = 0; i < ctx->rp_blt->count; i++) {
-        if (ctx->rp_blt->all[clickTowerID]->isLive) {
-            E_Blt* blt = ctx->rp_blt->all[i];
-            D_Blt_Spawn(ctx, 1, blt->moveAxis, blt->pos);
+    // blt spawn    修改time modify
+    for (int i = 0; i < ctx->rp_Cell->count; i++) {
+        E_cell* cell = ctx->rp_Cell->all[i];
+        if (cell->isCellToTower) {
+            ctx->bltSpawnTimer -= dt;
+            if (ctx->bltSpawnTimer <= 0) {
+                D_Blt_Spawn(ctx, 1, Vector2_New(1, 0), cell->pos);
+                ctx->bltSpawnTimer = ctx->bltSpawnInterval;
+            }
         }
     }
+    // blt pos and moveAxis
+    D_Blt_Move(ctx, dt);
+    // blt fade
+    D_Blt_Fade(ctx);
 }
 
+// Draw
 void B_Game_Draw(Ctx* ctx) {
     // Draw cell
     int cellLenth = ctx->rp_Cell->count;
@@ -114,6 +123,14 @@ void B_Game_Draw(Ctx* ctx) {
         E_Tower* tower = ctx->rp_tower->all[i];
         if (tower->isLive) {
             E_Tower_Draw(tower);
+        }
+    }
+
+    int bltLenth = ctx->rp_blt->count;
+    for (int i = 0; i < bltLenth; i++) {
+        E_Blt* blt = ctx->rp_blt->all[i];
+        if (blt->isLive) {
+            E_Blt_Draw(blt);
         }
     }
 }

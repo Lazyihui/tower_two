@@ -46,6 +46,8 @@ typedef struct Ctx {
 
     // RP blt
     RP_Blt* rp_blt;
+    float bltSpawnTimer;
+    float bltSpawnInterval;
 } Ctx;
 
 void ctx_Inti(Ctx* ctx) {
@@ -99,7 +101,10 @@ void ctx_Inti(Ctx* ctx) {
 
     // RP blt
     RP_Blt* rp_blt = (RP_Blt*)calloc(1, sizeof(RP_Blt));
+    ctx->bltSpawnInterval = 2;
+    ctx->bltSpawnTimer = 2;
     RP_Blt_Inti(rp_blt);
+
     ctx->rp_blt = rp_blt;
 }
 

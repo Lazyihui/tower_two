@@ -11,4 +11,31 @@ void D_Blt_Spawn(Ctx* ctx, int typeID, Vector2 moveAxis, Vector2 pos) {
     }
 }
 
+void D_Blt_Move(Ctx* ctx, float dt) {
+    for (int i = 0; i < ctx->rp_blt->count; i++) {
+        E_Blt* blt = ctx->rp_blt->all[i];
+        if (blt->isLive) {
+            E_Mst* mst = FindNearestMst(ctx, blt->pos, blt->hurtRange);
+            if (mst != NULL && blt != NULL) {
+                // 这里可以写blt 和mst的交叉检测
+                E_Blt_InputByTarget(blt, mst->pos);
+                
+                E_Blt_Move(blt, blt->moveAxis, dt);
+            }
+        }
+    }
+}
+
+// blt消失//可以把for循环改到外面去
+void D_Blt_Fade(Ctx* ctx) {
+    for (int i = ctx->rp_blt->count - 1; i >= 0; i--) {
+        E_Blt* blt = ctx->rp_blt->all[i];
+        if (blt->isInside) {
+            ctx->rp_blt->all[i] = ctx->rp_blt->all[ctx->rp_blt->count - 1];
+            ctx->rp_blt->all[ctx->rp_blt->count - 1] = blt;
+            ctx->rp_blt->count -= 1;
+        }
+    }
+}
+
 #endif

@@ -33,7 +33,7 @@ void E_Blt_Close(E_Blt* blt) {
     blt->isLive = false;
 }
 
-void E_Bullet_Draw(E_Blt* blt) {
+void E_Blt_Draw(E_Blt* blt) {
     DrawCircle(blt->pos.x, blt->pos.y, blt->radius, blt->color);
 }
 
