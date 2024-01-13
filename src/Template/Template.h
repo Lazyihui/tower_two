@@ -69,7 +69,7 @@ void Template_Mst_Init(Template* tpl) {
 void Template_Tower_Init(Template* tpl) {
     tpl->towerLength = 0;
     assert(tpl != NULL);
-    tpl->towers = (TM_Tower*)calloc(10, sizeof(TM_Tower));
+    tpl->towers = (TM_Tower*)calloc(20, sizeof(TM_Tower));
     assert(tpl->towers != NULL);
     TM_Tower* towers = tpl->towers;
     TM_Tower t1 = TM_Tower_Create(1, 1, 1, RED, RED, SHAPE_TYPE_CIRCLE, Vector2_New(std_cell * 2, std_cell * 2), 1);

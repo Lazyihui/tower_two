@@ -6,6 +6,7 @@
 #include "import.h"
 #include "D_UI.h"
 #include "D_Tower.h"
+#include "D_Blt.h"
 
 void UI_PanelTower() {
     // Plog("UI_PanelTower");
@@ -63,6 +64,7 @@ void B_Game_Tick(Ctx* ctx, float dt) {
         E_cell* cell = ctx->rp_Cell->all[i];
         bool isClickCell = E_cell_IsMouseInsideClick(cell, ctx->input->mouseWorldPos, ctx->input->isMouseDown);
         if (isClickCell) {
+
             D_UI_Tower_toggle(ctx, Vector2_New(cell->pos.x - 1.5 * std_cell, cell->pos.y), cell->ID, &UI_PanelTower);
         }
     }
@@ -70,15 +72,22 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     // panel click 点击panel里的ele然后panel消失 并且在此位置上生产点击ele tower
     int clickedCellID;
     int clickTowerTypeID;
+    int clickTowerID;
     bool isClickPanel = APP_UI_PanelTowerIsClick(ctx->ctx_UI, input->mouseWorldPos, input->isMouseDown, &clickedCellID,
                                                  &clickTowerTypeID);
     if (isClickPanel) {
-
         Vector2 pos = Vector2_New(ctx->rp_Cell->all[clickedCellID]->pos.x, ctx->rp_Cell->all[clickedCellID]->pos.y);
-        printf("%f,%f", pos.x, pos.y);
-        D_Tower_Spraw(ctx, clickTowerTypeID, pos);
-
+        D_Tower_Spraw(ctx, clickTowerTypeID, pos, &clickTowerID);
         APP_UI_PanelTower_Close(ctx->ctx_UI);
+    }
+    // blt pos and moveAxis
+
+    // blt spawn
+    for (int i = 0; i < ctx->rp_blt->count; i++) {
+        if (ctx->rp_blt->all[clickTowerID]->isLive) {
+            E_Blt* blt = ctx->rp_blt->all[i];
+            D_Blt_Spawn(ctx, 1, blt->moveAxis, blt->pos);
+        }
     }
 }
 

@@ -16,6 +16,23 @@ typedef struct E_Blt {
     bool isInside;
 } E_Blt;
 
+// 向敌人移动moveAxis
+void E_Blt_InputByTarget(E_Blt* blt, Vector2 tarGetPos) {
+
+    blt->moveAxis = Vector2Subtract(tarGetPos, blt->pos);
+}
+
+// blt pos
+void E_Blt_Move(E_Blt* blt, Vector2 moveAxis, float dt) {
+    Vector2 offest = Vector2Normalize(moveAxis);
+    offest = Vector2Scale(offest, blt->speed * dt);
+    blt->pos = Vector2Add(blt->pos, offest);
+}
+
+void E_Blt_Close(E_Blt* blt) {
+    blt->isLive = false;
+}
+
 void E_Bullet_Draw(E_Blt* blt) {
     DrawCircle(blt->pos.x, blt->pos.y, blt->radius, blt->color);
 }
