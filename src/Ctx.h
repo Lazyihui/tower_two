@@ -101,8 +101,8 @@ void ctx_Inti(Ctx* ctx) {
 
     // RP blt
     RP_Blt* rp_blt = (RP_Blt*)calloc(1, sizeof(RP_Blt));
-    ctx->bltSpawnInterval = 2;
-    ctx->bltSpawnTimer = 2;
+    ctx->bltSpawnInterval = 3;
+    ctx->bltSpawnTimer = 3;
     RP_Blt_Inti(rp_blt);
 
     ctx->rp_blt = rp_blt;

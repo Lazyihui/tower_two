@@ -84,9 +84,9 @@ void Template_Blt_Init(Template* tpl) {
     tpl->bltLength = 0;
     tpl->blts = (TM_Blt*)calloc(1000, sizeof(TM_Blt));
     TM_Blt* blt = tpl->blts;
-    TM_Blt blt1 = TM_Blt_Create(RED, 5, 20, 100, 1);
-    TM_Blt blt2 = TM_Blt_Create(GRAY, 10, 30, 80, 2);
-    TM_Blt blt3 = TM_Blt_Create(GREEN, 10, 40, 50, 3);
+    TM_Blt blt1 = TM_Blt_Create(GRAY, 5, 35, 100, 1);
+    TM_Blt blt2 = TM_Blt_Create(PINK, 10, 30, 80, 2);
+    TM_Blt blt3 = TM_Blt_Create(YELLOW, 10, 40, 50, 3);
     blt[tpl->bltLength++] = blt1;
     blt[tpl->bltLength++] = blt2;
     blt[tpl->bltLength++] = blt3;

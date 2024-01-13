@@ -68,4 +68,15 @@ bool IsMouseInsideRect(Vector2 rectPos, int width, int height, Vector2 mousePos)
     }
 }
 
+// 圆和圆的交叉检测
+bool IsCirlceInsideCircle(float r_a, float r_b, Vector2 pos_a, Vector2 pos_b) {
+    Vector2 diff = Vector2Subtract(pos_a, pos_b);
+    float lengthsqr = Vector2LengthSqr(diff);
+    if (lengthsqr >= (r_a + r_b) * (r_a + r_b)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 #endif

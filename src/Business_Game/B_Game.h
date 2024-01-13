@@ -96,7 +96,12 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     // blt pos and moveAxis
     D_Blt_Move(ctx, dt);
     // blt fade
-    D_Blt_Fade(ctx);
+    for (int i = 0; i < ctx->rp_blt->count; i++) {
+        E_Blt* blt = ctx->rp_blt->all[i];
+        if (blt->isInside) {
+            D_Blt_Fade(ctx);
+        }
+    }
 }
 
 // Draw

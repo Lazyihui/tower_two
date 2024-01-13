@@ -18,8 +18,10 @@ void D_Blt_Move(Ctx* ctx, float dt) {
             E_Mst* mst = FindNearestMst(ctx, blt->pos, blt->hurtRange);
             if (mst != NULL && blt != NULL) {
                 // 这里可以写blt 和mst的交叉检测
-                E_Blt_InputByTarget(blt, mst->pos);
+                blt->isInside = IsCirlceInsideCircle(blt->radius, mst->radius, blt->pos, mst->pos);
                 
+                E_Blt_InputByTarget(blt, mst->pos);
+
                 E_Blt_Move(blt, blt->moveAxis, dt);
             }
         }
