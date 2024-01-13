@@ -33,9 +33,7 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     ctx->mstSpawnTimer -= dt;
     if (ctx->mstSpawnTimer <= 0) {
         int mstID;
-        D_Mst_Spawn(ctx, 1, Vector2_New(0, 28 * std_cell), dt,&mstID);
-        APP_UI_Game_DrawMstHpInit(ctx->ctx_UI,ctx->rp_mst->all[mstID]->pos);
-        APP_UI_Game_DrawMst(ctx->ctx_UI,ctx->rp_mst->all[mstID]->hp);
+        D_Mst_Spawn(ctx, 1, Vector2_New(0, 28 * std_cell), dt, &mstID);
         ctx->mstSpawnTimer = ctx->mstSpawnInterval;
     }
     // 移动
@@ -66,21 +64,20 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     // mst移除 要改
     for (int i = ctx->rp_mst->count - 1; i >= 0; i--) {
         E_Mst* mst = ctx->rp_mst->all[i];
-        if (!mst->isLive) {
-            ctx->rp_mst->all[i] = ctx->rp_mst->all[ctx->rp_mst->count - 1];
-            ctx->rp_mst->all[ctx->rp_mst->count - 1] = mst;
-            ctx->rp_mst->count -= 1;
-        }
+        D_Mst_Remove(ctx, mst);
     }
     E_Input* input = ctx->input;
 
     // cellToTower 点击cell打开panel
     for (int i = 0; i < ctx->rp_Cell->count; i++) {
         E_cell* cell = ctx->rp_Cell->all[i];
-        bool isClickCell = E_cell_IsMouseInsideClick(cell, ctx->input->mouseWorldPos, ctx->input->isMouseDown);
+        bool isClickCell = E_cell_IsMouseInsideClick(
+            cell, ctx->input->mouseWorldPos, ctx->input->isMouseDown);
         if (isClickCell) {
 
-            D_UI_Tower_toggle(ctx, Vector2_New(cell->pos.x - 1.5 * std_cell, cell->pos.y), cell->ID, &UI_PanelTower);
+            D_UI_Tower_toggle(
+                ctx, Vector2_New(cell->pos.x - 1.5 * std_cell, cell->pos.y),
+                cell->ID, &UI_PanelTower);
         }
     }
 
@@ -88,11 +85,13 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     int clickedCellID;
     int clickTowerTypeID;
     int clickTowerID;
-    bool isClickPanel = APP_UI_PanelTowerIsClick(ctx->ctx_UI, input->mouseWorldPos, input->isMouseDown, &clickedCellID,
-                                                 &clickTowerTypeID);
+    bool isClickPanel = APP_UI_PanelTowerIsClick(
+        ctx->ctx_UI, input->mouseWorldPos, input->isMouseDown, &clickedCellID,
+        &clickTowerTypeID);
     if (isClickPanel) {
         ctx->rp_Cell->all[clickedCellID]->isCellToTower = true;
-        Vector2 pos = Vector2_New(ctx->rp_Cell->all[clickedCellID]->pos.x, ctx->rp_Cell->all[clickedCellID]->pos.y);
+        Vector2 pos = Vector2_New(ctx->rp_Cell->all[clickedCellID]->pos.x,
+                                  ctx->rp_Cell->all[clickedCellID]->pos.y);
         D_Tower_Spraw(ctx, clickTowerTypeID, pos, &clickTowerID);
         APP_UI_PanelTower_Close(ctx->ctx_UI);
     }
@@ -100,13 +99,17 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     // blt spawn    修改
     for (int i = 0; i < ctx->rp_Cell->count; i++) {
         E_cell* cell = ctx->rp_Cell->all[i];
+
         if (cell->isCellToTower) {
+
             ctx->bltSpawnTimer -= dt;
             if (ctx->bltSpawnTimer <= 0) {
                 D_Blt_Spawn(ctx, 1, Vector2_New(1, 0), cell->pos);
                 ctx->bltSpawnTimer = ctx->bltSpawnInterval;
             }
+        
         }
+
     }
 
     // blt pos and moveAxis

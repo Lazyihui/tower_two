@@ -3,7 +3,6 @@
 
 #include "import.h"
 
-
 typedef struct E_Mst {
     int ID;
     int typeID; // 1 Small, 2 Middle, 3 Big
@@ -11,13 +10,12 @@ typedef struct E_Mst {
     float radius;
     float speed;
     int hp;
-
+    int hpMax;
     Vector2 pos;
     Vector2 moveAxis;
     bool isLive;
     bool isInside;
 } E_Mst;
-
 
 void E_Mst_Move(E_Mst* mst, Vector2 moveAxis, float dt) {
     Vector2* posptr = &mst->pos;
@@ -27,6 +25,12 @@ void E_Mst_Move(E_Mst* mst, Vector2 moveAxis, float dt) {
 }
 
 void E_Mst_Draw(E_Mst* mst) {
+    // body
     DrawCircle(mst->pos.x, mst->pos.y, mst->radius, mst->color);
+    // UI
+    float value = mst->hp;
+    GuiSliderBar(
+        RectangleNew(mst->pos.x-mst->radius, mst->pos.y - mst->radius*2, mst->radius*2, 10),
+        " ", " ", &value, 0, mst->hpMax);
 }
 #endif

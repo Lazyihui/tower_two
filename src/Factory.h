@@ -34,6 +34,7 @@ E_Mst* Factory_Create_Mst(Ctx* ctx, int typeID, Vector2 pos, Vector2 moveAxis) {
     mst->ID = ctx->s_id->mstIDRecord++;
     mst->pos = pos;
     mst->hp = tm->hp;
+    mst->hpMax = tm->hp;
     mst->color = tm->color;
     mst->radius = tm->radius;
     mst->speed = tm->speed;

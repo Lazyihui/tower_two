@@ -74,12 +74,12 @@ void APP_UI_Game_DrawMstHpInit(CtxUI* ctxUI, Vector2 pos) {
     ctxUI->mstHp.y = pos.y;
 }
 
-void APP_UI_Game_DrawMst(CtxUI* ctxUI, float hp) {
-    PlogNoArg("a\r\n");
+void APP_UI_Game_DrawMstHp(CtxUI* ctxUI, float hp) {
 
     float value = hp;
     GuiSliderBar(ctxUI->mstHp, " ", " ", &value, 0, hp);
 }
+
 
 // 画时间 金钱
 void APP_UI_Game_Draw(CtxUI* ctxUI) {
