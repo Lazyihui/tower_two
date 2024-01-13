@@ -41,22 +41,8 @@ void B_Game_Tick(Ctx* ctx, float dt) {
         // 加一个i取一个*
         E_Mst* mst = ctx->rp_mst->all[i];
         D_Mst_Move(ctx, mst, dt);
-    }
-    // mst 超出边界
-    for (int i = 0; i < ctx->rp_mst->count; i++) {
-        E_Mst* mst = ctx->rp_mst->all[i];
+        // D_Mst_OverEdge()
         if (mst->pos.y <= -20 * std_cell) {
-            mst->isLive = false;
-        }
-    }
-    // mst的血量减为0的情况
-    for (int i = 0; i < ctx->rp_mst->count; i++) {
-        E_Mst* mst = ctx->rp_mst->all[i];
-        if (mst->isInside) {
-            mst->hp -= 1;
-            mst->isInside = false;
-        }
-        if (mst->hp <= 0) {
             mst->isLive = false;
         }
     }
@@ -97,19 +83,20 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     }
 
     // blt spawn    修改
-    for (int i = 0; i < ctx->rp_Cell->count; i++) {
-        E_cell* cell = ctx->rp_Cell->all[i];
+    for (int i = 0; i < ctx->rp_tower->count; i++) {
+        E_Tower* tower = ctx->rp_tower->all[i];
+        if (tower->isLive) {
+            tower->bltSpawnTimer -= dt;
+            if (tower->bltSpawnTimer <= 0) {
+                E_Mst* mst = FindNearestMst(ctx, tower->pos, 100);
 
-        if (cell->isCellToTower) {
+                if (mst != NULL) {
 
-            ctx->bltSpawnTimer -= dt;
-            if (ctx->bltSpawnTimer <= 0) {
-                D_Blt_Spawn(ctx, 1, Vector2_New(1, 0), cell->pos);
-                ctx->bltSpawnTimer = ctx->bltSpawnInterval;
+                    D_Blt_Spawn(ctx, 1, Vector2_New(0, 0), tower->pos);
+                    tower->bltSpawnTimer = tower->bltSpawnInterval;
+                }
             }
-        
         }
-
     }
 
     // blt pos and moveAxis

@@ -58,7 +58,8 @@ E_Tower* Factory_Create_Tower(Ctx* ctx, int typeID, Vector2 pos) {
     tower->pos = pos;
     tower->size = tm->size;
     tower->isLive = false;
-
+    tower->bltSpawnInterval = 2;
+    tower->bltSpawnTimer = 2;
     return tower;
 }
 
