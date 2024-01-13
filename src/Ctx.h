@@ -101,8 +101,8 @@ void ctx_Inti(Ctx* ctx) {
 
     // RP blt
     RP_Blt* rp_blt = (RP_Blt*)calloc(1, sizeof(RP_Blt));
-    ctx->bltSpawnInterval = 3;
-    ctx->bltSpawnTimer = 3;
+    ctx->bltSpawnInterval = 2;
+    ctx->bltSpawnTimer = 2;
     RP_Blt_Inti(rp_blt);
 
     ctx->rp_blt = rp_blt;
@@ -117,5 +117,6 @@ void ctx_Free(Ctx* ctx) {
     RP_Mst_Free(ctx->rp_mst);
     RP_Tower_Free(ctx->rp_tower);
     RP_Blt_Free(ctx->rp_blt);
+    APP_UI_Free(ctx->ctx_UI);
 }
 #endif

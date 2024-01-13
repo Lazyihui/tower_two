@@ -3,10 +3,11 @@
 
 #include "import.h"
 
-void D_Mst_Spawn(Ctx* ctx, int typeID, Vector2 pos, float dt) {
+void D_Mst_Spawn(Ctx* ctx, int typeID, Vector2 pos, float dt,int *outMstID) {
 
     E_Mst* mst = Factory_Create_Mst(ctx, typeID, pos, Vector2_New(0, -1));
     if (mst != NULL) {
+        *outMstID= mst->ID;
         RP_Mst_Add(ctx->rp_mst, mst);
     }
 }

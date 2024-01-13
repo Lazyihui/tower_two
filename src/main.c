@@ -14,8 +14,6 @@ void UI_Login_OnClicckStart() {
     B_Game_Enter(ctx);
 }
 
-
-
 int main() {
     ctx = (Ctx*)calloc(1, sizeof(Ctx));
     // 16:9
@@ -51,7 +49,6 @@ int main() {
             APP_UI_Game_Tick(ctx->ctx_UI, dt);
             B_Game_Tick(ctx, dt);
             // 格子和鼠标的交叉检测，得到格子的ID
-            
         }
         //==== Draw World ====
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
@@ -61,10 +58,17 @@ int main() {
             APP_UI_Game_DrawWorld(ctx->ctx_UI);
             B_Game_Draw(ctx);
         }
+        // Rectangle a;
+        // a.height = 40;
+        // a.width = 300;
+        // a.x = 100;
+        // a.y = 100;
+        // float value=10;
 
         EndMode2D();
         // ==== Draw UI ====
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
+            // GuiSliderBar(a, " ", " ", &value, 0, 100);
             APP_UI_Login_DrawUI(ctx->ctx_UI);
 
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {

@@ -18,6 +18,9 @@ typedef struct CtxUI {
     PN_TowerMani* pn_towerMani;
     int typeTower[3];
 
+    Rectangle mstHp;
+    float mstvalue;
+
 } CtxUI;
 
 void ctxUIInit(CtxUI* ctxUI) {
@@ -28,14 +31,19 @@ void ctxUIInit(CtxUI* ctxUI) {
     ctxUI->rectWorldHp.width = 130;
     ctxUI->rectWorldHp.x = 30;
     ctxUI->rectWorldHp.y = 60;
-    ctxUI->value = 100;
+    ctxUI->mstvalue = 100;
 
     for (int i = 0; i < 3; i++) {
         ctxUI->typeTower[i] = i + 1;
     }
+
+    ctxUI->mstHp.height = 10;
+    ctxUI->mstHp.width = 100;
+    ctxUI->value = 100;
 }
 
-bool APP_UI_PanelTowerIsClick(CtxUI* ctxUI, Vector2 mouseWorldPos, bool isMouseDown, int *outCellID, int *outTowerTypeID) {
+bool APP_UI_PanelTowerIsClick(CtxUI* ctxUI, Vector2 mouseWorldPos, bool isMouseDown, int* outCellID,
+                              int* outTowerTypeID) {
     PN_TowerMani* panel = ctxUI->pn_towerMani;
     if (panel != NULL) {
         *outCellID = panel->clickedCellID;
@@ -59,6 +67,18 @@ void APP_UI_Login_DrawUI(CtxUI* ctxUI) {
     if (ctxUI->pn_login != NULL) {
         PN_Login_Draw(ctxUI->pn_login);
     }
+}
+
+void APP_UI_Game_DrawMstHpInit(CtxUI* ctxUI, Vector2 pos) {
+    ctxUI->mstHp.x = pos.x;
+    ctxUI->mstHp.y = pos.y;
+}
+
+void APP_UI_Game_DrawMst(CtxUI* ctxUI, float hp) {
+    PlogNoArg("a\r\n");
+
+    float value = hp;
+    GuiSliderBar(ctxUI->mstHp, " ", " ", &value, 0, hp);
 }
 
 // 画时间 金钱
@@ -85,14 +105,14 @@ void APP_UI_Game_DrawWorld(CtxUI* ctxUI) {
     }
 }
 
-void APP_UI_PanelTower_Open(CtxUI* ctxUI, Vector2 pos, int cellID,void (*onClickStartHandle)(void)) {
+void APP_UI_PanelTower_Open(CtxUI* ctxUI, Vector2 pos, int cellID, void (*onClickStartHandle)(void)) {
     PN_TowerMani* panel = ctxUI->pn_towerMani;
     if (panel == NULL) {
         panel = (PN_TowerMani*)calloc(1, sizeof(PN_TowerMani));
         PN_TowerMani_Ctor(panel, onClickStartHandle);
         ctxUI->pn_towerMani = panel;
     }
-    PN_TowerMani_Init(panel, pos,cellID);
+    PN_TowerMani_Init(panel, pos, cellID);
 }
 
 void APP_UI_PanelTower_Close(CtxUI* ctxUI) {

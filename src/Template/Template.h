@@ -54,7 +54,7 @@ void Template_Mst_Init(Template* tpl) {
     mst_small.speed = 30;
     mst_small.radius = 10;
     mst_small.color = RED;
-    mst_small.hp = 1;
+    mst_small.hp = 3;
     mst[tpl->mstLenth++] = mst_small;
 
     TM_Mst mst_max;
@@ -62,7 +62,7 @@ void Template_Mst_Init(Template* tpl) {
     mst_max.speed = 40;
     mst_max.radius = 20;
     mst_max.color = GRAY;
-    mst_max.hp = 2;
+    mst_max.hp = 5;
     mst[tpl->mstLenth++] = mst_max;
 }
 

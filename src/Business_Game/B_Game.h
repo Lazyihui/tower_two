@@ -32,7 +32,10 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     // mst 生成
     ctx->mstSpawnTimer -= dt;
     if (ctx->mstSpawnTimer <= 0) {
-        D_Mst_Spawn(ctx, 1, Vector2_New(0, 28 * std_cell), dt);
+        int mstID;
+        D_Mst_Spawn(ctx, 1, Vector2_New(0, 28 * std_cell), dt,&mstID);
+        APP_UI_Game_DrawMstHpInit(ctx->ctx_UI,ctx->rp_mst->all[mstID]->pos);
+        APP_UI_Game_DrawMst(ctx->ctx_UI,ctx->rp_mst->all[mstID]->hp);
         ctx->mstSpawnTimer = ctx->mstSpawnInterval;
     }
     // 移动
@@ -60,7 +63,7 @@ void B_Game_Tick(Ctx* ctx, float dt) {
         }
     }
 
-    // mst移除
+    // mst移除 要改
     for (int i = ctx->rp_mst->count - 1; i >= 0; i--) {
         E_Mst* mst = ctx->rp_mst->all[i];
         if (!mst->isLive) {
@@ -94,7 +97,7 @@ void B_Game_Tick(Ctx* ctx, float dt) {
         APP_UI_PanelTower_Close(ctx->ctx_UI);
     }
 
-    // blt spawn    修改time modify
+    // blt spawn    修改
     for (int i = 0; i < ctx->rp_Cell->count; i++) {
         E_cell* cell = ctx->rp_Cell->all[i];
         if (cell->isCellToTower) {
@@ -105,10 +108,10 @@ void B_Game_Tick(Ctx* ctx, float dt) {
             }
         }
     }
-    
+
     // blt pos and moveAxis
     D_Blt_Move(ctx, dt);
-    // blt fade
+    // blt fade 要改
     for (int i = 0; i < ctx->rp_blt->count; i++) {
         E_Blt* blt = ctx->rp_blt->all[i];
         if (blt->isInside) {
