@@ -39,7 +39,7 @@ E_Mst* Factory_Create_Mst(Ctx* ctx, int typeID, Vector2 pos, Vector2 moveAxis) {
     mst->speed = tm->speed;
     mst->moveAxis = moveAxis;
     mst->isLive = true;
-
+    mst->isInside = false;
     return mst;
 }
 

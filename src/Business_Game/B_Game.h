@@ -41,13 +41,25 @@ void B_Game_Tick(Ctx* ctx, float dt) {
         E_Mst* mst = ctx->rp_mst->all[i];
         D_Mst_Move(ctx, mst, dt);
     }
-    // mst的血量减为0的情况
+    // mst 超出边界
     for (int i = 0; i < ctx->rp_mst->count; i++) {
         E_Mst* mst = ctx->rp_mst->all[i];
-        if (mst->pos.y <= -18 * std_cell) {
+        if (mst->pos.y <= -20 * std_cell) {
             mst->isLive = false;
         }
     }
+    // mst的血量减为0的情况
+    for (int i = 0; i < ctx->rp_mst->count; i++) {
+        E_Mst* mst = ctx->rp_mst->all[i];
+        if (mst->isInside) {
+            mst->hp -= 1;
+            mst->isInside = false;
+        }
+        if (mst->hp <= 0) {
+            mst->isLive = false;
+        }
+    }
+
     // mst移除
     for (int i = ctx->rp_mst->count - 1; i >= 0; i--) {
         E_Mst* mst = ctx->rp_mst->all[i];
@@ -93,6 +105,7 @@ void B_Game_Tick(Ctx* ctx, float dt) {
             }
         }
     }
+    
     // blt pos and moveAxis
     D_Blt_Move(ctx, dt);
     // blt fade
@@ -102,6 +115,9 @@ void B_Game_Tick(Ctx* ctx, float dt) {
             D_Blt_Fade(ctx);
         }
     }
+}
+
+void B_Game_Fade(Ctx* ctx) {
 }
 
 // Draw

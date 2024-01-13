@@ -19,7 +19,7 @@ void D_Blt_Move(Ctx* ctx, float dt) {
             if (mst != NULL && blt != NULL) {
                 // 这里可以写blt 和mst的交叉检测
                 blt->isInside = IsCirlceInsideCircle(blt->radius, mst->radius, blt->pos, mst->pos);
-                
+                mst->isInside= blt->isInside;
                 E_Blt_InputByTarget(blt, mst->pos);
 
                 E_Blt_Move(blt, blt->moveAxis, dt);
