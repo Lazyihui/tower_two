@@ -77,11 +77,14 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     bool isClickPanel = APP_UI_PanelTowerIsClick(
         ctx->ctx_UI, input->mouseWorldPos, input->isMouseDown, &clickedCellID,
         &clickTowerTypeID);
+
     if (isClickPanel) {
         ctx->rp_Cell->all[clickedCellID]->isCellToTower = true;
         Vector2 pos = Vector2_New(ctx->rp_Cell->all[clickedCellID]->pos.x,
                                   ctx->rp_Cell->all[clickedCellID]->pos.y);
+
         D_Tower_Spraw(ctx, clickTowerTypeID, pos, &clickTowerID);
+
         APP_UI_PanelTower_Close(ctx->ctx_UI);
     }
 

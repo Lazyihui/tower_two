@@ -53,7 +53,7 @@ typedef struct Ctx {
     float valuePlay;
     float time;
     float gold;
-    
+
 } Ctx;
 
 void ctx_Inti(Ctx* ctx) {
@@ -115,7 +115,7 @@ void ctx_Inti(Ctx* ctx) {
     // Play
     ctx->valuePlay = 10;
     ctx->time = 0;
-    ctx->gold = 10;
+    ctx->gold = 5;
 }
 
 void ctx_Free(Ctx* ctx) {

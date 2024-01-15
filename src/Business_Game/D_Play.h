@@ -5,7 +5,7 @@
 
 void D_Play_Tick(Ctx* ctx, float dt) {
     ctx->time += dt;
-    if (ctx->gold <= 100) {
+    if (ctx->gold <= 30) {
         ctx->gold += dt * 2.0f;
     }
 }
