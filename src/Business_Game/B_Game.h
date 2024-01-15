@@ -7,6 +7,7 @@
 #include "D_UI.h"
 #include "D_Tower.h"
 #include "D_Blt.h"
+#include "D_Play.h"
 
 void UI_PanelTower() {
     // Plog("UI_PanelTower");
@@ -43,6 +44,7 @@ void B_Game_Tick(Ctx* ctx, float dt) {
         D_Mst_Move(ctx, mst, dt);
         // D_Mst_OverEdge()
         if (mst->pos.y <= -20 * std_cell) {
+            ctx->valuePlay -= 1;
             mst->isLive = false;
         }
     }

@@ -3,8 +3,8 @@
 
 #include "import.h"
 
-void D_Blt_Spawn(Ctx* ctx, int typeID,Vector2 moveAxis, Vector2 pos) {
-    E_Blt* blt = Factory_Create_Blt(ctx, typeID,moveAxis, pos);
+void D_Blt_Spawn(Ctx* ctx, int typeID, Vector2 moveAxis, Vector2 pos) {
+    E_Blt* blt = Factory_Create_Blt(ctx, typeID, moveAxis, pos);
     if (blt != NULL) {
         RP_Blt_Add(ctx->rp_blt, blt);
         blt->isLive = true;
@@ -21,7 +21,7 @@ void D_Blt_Move(Ctx* ctx, E_Blt* blt, float dt) {
                                                  blt->pos, mst->pos);
             if (isInside) {
                 blt->isLive = false;
-                mst->hp -= 1;
+                mst->hp -= blt->typeID;
                 if (mst->hp <= 0) {
                     mst->isLive = false;
                 }

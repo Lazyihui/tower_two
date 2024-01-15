@@ -42,12 +42,14 @@ void ctxUIInit(CtxUI* ctxUI) {
     ctxUI->value = 100;
 }
 
-bool APP_UI_PanelTowerIsClick(CtxUI* ctxUI, Vector2 mouseWorldPos, bool isMouseDown, int* outCellID,
+bool APP_UI_PanelTowerIsClick(CtxUI* ctxUI, Vector2 mouseWorldPos,
+                              bool isMouseDown, int* outCellID,
                               int* outTowerTypeID) {
     PN_TowerMani* panel = ctxUI->pn_towerMani;
     if (panel != NULL) {
         *outCellID = panel->clickedCellID;
-        return PanelTower_Isclick(panel, mouseWorldPos, isMouseDown, outTowerTypeID);
+        return PanelTower_Isclick(panel, mouseWorldPos, isMouseDown,
+                                  outTowerTypeID);
     } else {
         return false;
     }
@@ -69,43 +71,35 @@ void APP_UI_Login_DrawUI(CtxUI* ctxUI) {
     }
 }
 
-void APP_UI_Game_DrawMstHpInit(CtxUI* ctxUI, Vector2 pos) {
-    ctxUI->mstHp.x = pos.x;
-    ctxUI->mstHp.y = pos.y;
-}
-
-void APP_UI_Game_DrawMstHp(CtxUI* ctxUI, float hp) {
-
-    float value = hp;
-    GuiSliderBar(ctxUI->mstHp, " ", " ", &value, 0, hp);
-}
-
-
 // 画时间 金钱
-void APP_UI_Game_Draw(CtxUI* ctxUI) {
+void APP_UI_Game_Draw(CtxUI* ctxUI, float valuePlay,float time,float gold) {
     // time
     DrawText("time", 2 * std_cell, (int)1.5 * std_cell, 2 * std_cell, BLACK);
-    Text_Int(ctxUI->time, (int)7 * std_cell, (int)1.5 * std_cell, 2 * std_cell, ORANGE);
+    Text_Int(time, (int)7 * std_cell, (int)1.5 * std_cell, 2 * std_cell,
+             ORANGE);
 
     // gold
     DrawText("gold", 2 * std_cell, (int)3.5 * std_cell, 2 * std_cell, BLACK);
-    Text_Int(ctxUI->gold, (int)7 * std_cell, (int)3.5 * std_cell, 2 * std_cell, ORANGE);
+    Text_Int(gold, (int)7 * std_cell, (int)3.5 * std_cell, 2 * std_cell,
+             ORANGE);
 
     // silder
-    float value = ctxUI->value;
-    GuiSliderBar(ctxUI->rectWorldHp, "hp", " ", &value, 0, 10 * std_cell);
+    float value = valuePlay;
+    GuiSliderBar(ctxUI->rectWorldHp, "hp", " ", &value, 0, 10);
 }
 
 void APP_UI_Game_DrawWorld(CtxUI* ctxUI) {
     // 路
-    DrawRectangle(std_cell * -5, std_cell * (int)-26.5, std_cell * 10, std_cell * 53, BROWN);
+    DrawRectangle(std_cell * -5, std_cell * (int)-26.5, std_cell * 10,
+                  std_cell * 53, BROWN);
     // panel tower
     if (ctxUI->pn_towerMani != NULL) {
         PanelTower_Draw(ctxUI->pn_towerMani);
     }
 }
 
-void APP_UI_PanelTower_Open(CtxUI* ctxUI, Vector2 pos, int cellID, void (*onClickStartHandle)(void)) {
+void APP_UI_PanelTower_Open(CtxUI* ctxUI, Vector2 pos, int cellID,
+                            void (*onClickStartHandle)(void)) {
     PN_TowerMani* panel = ctxUI->pn_towerMani;
     if (panel == NULL) {
         panel = (PN_TowerMani*)calloc(1, sizeof(PN_TowerMani));
@@ -156,9 +150,5 @@ bool APP_UI_Login_Click(CtxUI* ctxUI) {
     return false;
 }
 
-void APP_UI_Game_Tick(CtxUI* ctxUI, float dt) {
-    ctxUI->time += dt;
-    ctxUI->gold += dt * 2.0f;
-}
 
 #endif

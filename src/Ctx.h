@@ -48,6 +48,12 @@ typedef struct Ctx {
     RP_Blt* rp_blt;
     float bltSpawnTimer;
     float bltSpawnInterval;
+
+    // play
+    float valuePlay;
+    float time;
+    float gold;
+    
 } Ctx;
 
 void ctx_Inti(Ctx* ctx) {
@@ -104,8 +110,12 @@ void ctx_Inti(Ctx* ctx) {
     ctx->bltSpawnInterval = 2;
     ctx->bltSpawnTimer = 2;
     RP_Blt_Inti(rp_blt);
-
     ctx->rp_blt = rp_blt;
+
+    // Play
+    ctx->valuePlay = 10;
+    ctx->time = 0;
+    ctx->gold = 10;
 }
 
 void ctx_Free(Ctx* ctx) {

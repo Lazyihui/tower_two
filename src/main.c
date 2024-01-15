@@ -40,13 +40,14 @@ int main() {
 
         //==== Input ====
         // if (APP_UI_Login_Click(ctx->ctx_UI)) {
-        E_Input_Process(ctx->input, Vector2_New(ctx->windowWidth / 2, ctx->windowheight / 2));
+        E_Input_Process(ctx->input, Vector2_New(ctx->windowWidth / 2,
+                                                ctx->windowheight / 2));
 
         // }
         //==== Logic Tick ====
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
-            APP_UI_Game_Tick(ctx->ctx_UI, dt);
+            D_Play_Tick(ctx,dt);
             B_Game_Tick(ctx, dt);
             // 格子和鼠标的交叉检测，得到格子的ID
         }
@@ -72,7 +73,7 @@ int main() {
             APP_UI_Login_DrawUI(ctx->ctx_UI);
 
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
-            APP_UI_Game_Draw(ctx->ctx_UI);
+            APP_UI_Game_Draw(ctx->ctx_UI, ctx->valuePlay, ctx->time, ctx->gold);
         }
 
         EndDrawing();
