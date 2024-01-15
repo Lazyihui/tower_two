@@ -10,7 +10,7 @@ typedef struct TM_Tower {
     // Logic
     int hp;
     int bulletTypeID;
-    int hurt;
+    int hurtRange;
     // UI
     Color iconColor;
 
@@ -22,7 +22,7 @@ typedef struct TM_Tower {
 } TM_Tower;
 
 TM_Tower TM_Tower_Create(int typeID, int hp, int bulletTypeID, Color iconColor, Color worldColor, ShapeType shapeType,
-                         Vector2 size,int hurt) {
+                         Vector2 size,int hurtRange ) {
     TM_Tower tm;
     tm.typeID = typeID;
     tm.hp = hp;
@@ -31,7 +31,7 @@ TM_Tower TM_Tower_Create(int typeID, int hp, int bulletTypeID, Color iconColor, 
     tm.worldColor = worldColor;
     tm.shapeType = shapeType;
     tm.size = size;
-    tm.hurt  = hurt;
+    tm.hurtRange  = hurtRange;
     return tm;
 }
 

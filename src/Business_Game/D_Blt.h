@@ -11,27 +11,23 @@ void D_Blt_Spawn(Ctx* ctx, int typeID, Vector2 moveAxis, Vector2 pos) {
     }
 }
 
-void D_Blt_Move(Ctx* ctx, float dt) {
-    for (int i = 0; i < ctx->rp_blt->count; i++) {
-        E_Blt* blt = ctx->rp_blt->all[i];
-        if (blt->isLive) {
-
-            E_Blt_Move(blt, blt->moveAxis, dt);
-
-            E_Mst* mst = FindNearestMst(ctx, blt->pos, blt->hurtRange);
-            if (mst != NULL) {
-                // 这里可以写blt 和mst的交叉检测
-                bool isInside = IsCirlceInsideCircle(blt->radius, mst->radius,
-                                                     blt->pos, mst->pos);
-                if (isInside) {
-                    blt->isLive = false;
-                    mst->hp -= 1;
-                    if (mst->hp <= 0) {
-                        mst->isLive = false;
-                    }
+//blt向mst移动
+void D_Blt_Move(Ctx* ctx, E_Blt *blt, float dt) {
+    if (blt->isLive) {
+        E_Blt_Move(blt, blt->moveAxis, dt);
+        E_Mst* mst = FindNearestMst(ctx, blt->pos, blt->hurtRange);
+        if (mst != NULL) {
+            // 这里可以写blt 和mst的交叉检测
+            bool isInside = IsCirlceInsideCircle(blt->radius, mst->radius,
+                                                 blt->pos, mst->pos);
+            if (isInside) {
+                blt->isLive = false;
+                mst->hp -= 1;
+                if (mst->hp <= 0) {
+                    mst->isLive = false;
                 }
-                E_Blt_InputByTarget(blt, mst->pos);
             }
+            E_Blt_InputByTarget(blt, mst->pos);
         }
     }
 }

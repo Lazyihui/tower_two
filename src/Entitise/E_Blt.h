@@ -22,6 +22,7 @@ void E_Blt_InputByTarget(E_Blt* blt, Vector2 tarGetPos) {
     blt->moveAxis = Vector2Subtract(tarGetPos, blt->pos);
 }
 
+
 // blt pos
 void E_Blt_Move(E_Blt* blt, Vector2 moveAxis, float dt) {
     Vector2 offest = Vector2Normalize(moveAxis);

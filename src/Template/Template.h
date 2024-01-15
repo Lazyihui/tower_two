@@ -72,9 +72,12 @@ void Template_Tower_Init(Template* tpl) {
     tpl->towers = (TM_Tower*)calloc(20, sizeof(TM_Tower));
     assert(tpl->towers != NULL);
     TM_Tower* towers = tpl->towers;
-    TM_Tower t1 = TM_Tower_Create(1, 1, 1, RED, RED, SHAPE_TYPE_CIRCLE, Vector2_New(std_cell * 2, std_cell * 2), 1);
-    TM_Tower t2 = TM_Tower_Create(2, 2, 1, GREEN, GREEN, SHAPE_TYPE_CIRCLE, Vector2_New(std_cell * 2, std_cell * 2), 2);
-    TM_Tower t3 = TM_Tower_Create(3, 3, 1, YELLOW, YELLOW, SHAPE_TYPE_RECT, Vector2_New(std_cell * 2, std_cell * 2), 3);
+    TM_Tower t1 = TM_Tower_Create(1, 1, 1, RED, RED, SHAPE_TYPE_CIRCLE,
+                                  Vector2_New(std_cell * 2, std_cell * 2), 100);
+    TM_Tower t2 = TM_Tower_Create(2, 2, 1, GREEN, GREEN, SHAPE_TYPE_CIRCLE,
+                                  Vector2_New(std_cell * 2, std_cell * 2), 80);
+    TM_Tower t3 = TM_Tower_Create(3, 3, 1, YELLOW, YELLOW, SHAPE_TYPE_RECT,
+                                  Vector2_New(std_cell * 2, std_cell * 2), 50);
     towers[tpl->towerLength++] = t1;
     towers[tpl->towerLength++] = t2;
     towers[tpl->towerLength++] = t3;
@@ -84,8 +87,8 @@ void Template_Blt_Init(Template* tpl) {
     tpl->bltLength = 0;
     tpl->blts = (TM_Blt*)calloc(1000, sizeof(TM_Blt));
     TM_Blt* blt = tpl->blts;
-    TM_Blt blt1 = TM_Blt_Create(GRAY, 5, 35, 100, 1);
-    TM_Blt blt2 = TM_Blt_Create(PINK, 10, 30, 80, 2);
+    TM_Blt blt1 = TM_Blt_Create(RED, 5, 35, 100, 1);
+    TM_Blt blt2 = TM_Blt_Create(GREEN, 10, 30, 80, 2);
     TM_Blt blt3 = TM_Blt_Create(YELLOW, 10, 40, 50, 3);
     blt[tpl->bltLength++] = blt1;
     blt[tpl->bltLength++] = blt2;

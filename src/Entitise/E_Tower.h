@@ -10,7 +10,7 @@ typedef struct E_Tower {
     Vector2 size;
     Color color;
 
-    int hurt;
+    int hurtRange;
     bool isLive;
     float bltSpawnTimer;
     float bltSpawnInterval;

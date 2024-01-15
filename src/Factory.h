@@ -53,7 +53,7 @@ E_Tower* Factory_Create_Tower(Ctx* ctx, int typeID, Vector2 pos) {
     E_Tower* tower = (E_Tower*)calloc(1, sizeof(E_Tower));
     tower->ID = ctx->s_id->towerRecord++;
     tower->color = tm->worldColor;
-    tower->hurt = tm->hurt;
+    tower->hurtRange = tm->hurtRange;
     tower->typeID = tm->typeID;
     tower->pos = pos;
     tower->size = tm->size;
