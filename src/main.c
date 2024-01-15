@@ -13,7 +13,10 @@ void UI_Login_OnClicckStart() {
     ctx->gameStatus = GAME_STATUS_GAME;
     B_Game_Enter(ctx);
 }
-
+void UI_Over_OnClicckStart() {
+    APP_UI_Over_Close(ctx->ctx_UI);
+    ctx->gameStatus = GAME_STATUS_GAME;
+}
 int main() {
     ctx = (Ctx*)calloc(1, sizeof(Ctx));
     // 16:9
@@ -47,9 +50,13 @@ int main() {
         //==== Logic Tick ====
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
-            D_Play_Tick(ctx,dt);
+            D_Play_Tick(ctx, dt);
             B_Game_Tick(ctx, dt);
-            // 格子和鼠标的交叉检测，得到格子的ID
+            if (ctx->valuePlay <= 0) {
+                ctx->gameStatus = GAME_STATUS_OVER;
+            }
+        } else if (ctx->gameStatus == GAME_STATUS_OVER) {
+            APP_UI_Over_Open(ctx->ctx_UI, &UI_Over_OnClicckStart);
         }
         //==== Draw World ====
         if (ctx->gameStatus == GAME_STATUS_LOGIN) {
@@ -58,7 +65,9 @@ int main() {
 
             APP_UI_Game_DrawWorld(ctx->ctx_UI);
             B_Game_Draw(ctx);
+        } else if (ctx->gameStatus == GAME_STATUS_OVER) {
         }
+
         // Rectangle a;
         // a.height = 40;
         // a.width = 300;
@@ -74,6 +83,8 @@ int main() {
 
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
             APP_UI_Game_Draw(ctx->ctx_UI, ctx->valuePlay, ctx->time, ctx->gold);
+        } else if (ctx->gameStatus == GAME_STATUS_OVER) {
+            APP_UI_Over_DrawUI(ctx->ctx_UI);
         }
 
         EndDrawing();

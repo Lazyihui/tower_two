@@ -5,12 +5,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "PN_TowerMani.h"
+#include "PN_Over.h"
 
 typedef struct CtxUI {
     PN_Login* pn_login;
-    float time;
-    float gold;
 
+    PN_Over* pn_over;
     // slider
     Rectangle rectWorldHp;
     float value;
@@ -24,8 +24,6 @@ typedef struct CtxUI {
 } CtxUI;
 
 void ctxUIInit(CtxUI* ctxUI) {
-    ctxUI->time = 0;
-    ctxUI->gold = 0;
 
     ctxUI->rectWorldHp.height = 20;
     ctxUI->rectWorldHp.width = 130;
@@ -61,6 +59,10 @@ void APP_UI_Free(CtxUI* ctxUI) {
         free(ctxUI->pn_login);
         ctxUI->pn_login = NULL;
     }
+    if (ctxUI->pn_over != NULL) {
+        free(ctxUI->pn_over);
+        ctxUI->pn_over = NULL;
+    }
     free(ctxUI);
 }
 
@@ -71,8 +73,14 @@ void APP_UI_Login_DrawUI(CtxUI* ctxUI) {
     }
 }
 
+void APP_UI_Over_DrawUI(CtxUI* ctxUI) {
+    if (ctxUI->pn_over != NULL) {
+        PN_Over_Draw(ctxUI->pn_over);
+    }
+}
+
 // 画时间 金钱
-void APP_UI_Game_Draw(CtxUI* ctxUI, float valuePlay,float time,float gold) {
+void APP_UI_Game_Draw(CtxUI* ctxUI, float valuePlay, float time, float gold) {
     // time
     DrawText("time", 2 * std_cell, (int)1.5 * std_cell, 2 * std_cell, BLACK);
     Text_Int(time, (int)7 * std_cell, (int)1.5 * std_cell, 2 * std_cell,
@@ -86,6 +94,19 @@ void APP_UI_Game_Draw(CtxUI* ctxUI, float valuePlay,float time,float gold) {
     // silder
     float value = valuePlay;
     GuiSliderBar(ctxUI->rectWorldHp, "hp", " ", &value, 0, 10);
+
+    DrawRectangle((int)2 * std_cell, (int)9.5 * std_cell, std_cell * 2,
+                  std_cell * 2, RED);
+    DrawRectangle((int)2 * std_cell, (int)11.5 * std_cell, std_cell * 2,
+                  std_cell * 2, GREEN);
+    DrawRectangle((int)2 * std_cell, (int)13.5 * std_cell, std_cell * 2,
+                  std_cell * 2, YELLOW);
+    DrawText("10 gold", (int)6 * std_cell, (int)9.5 * std_cell, std_cell * 2,
+             BLACK);
+    DrawText("20 gold", (int)6 * std_cell, (int)11.5 * std_cell, std_cell * 2,
+             BLACK);
+    DrawText("30 gold", (int)6 * std_cell, (int)13.5 * std_cell, std_cell * 2,
+             BLACK);
 }
 
 void APP_UI_Game_DrawWorld(CtxUI* ctxUI) {
@@ -135,6 +156,13 @@ void APP_UI_Login_Open(CtxUI* ctxUI, void (*onClickStartHandle)(void)) {
     ctxUI->pn_login = panel;
 }
 
+void APP_UI_Over_Open(CtxUI* ctxUI, void (*onClickStartHandle)(void)) {
+    PN_Over* panel = (PN_Over*)calloc(1, sizeof(PN_Over));
+    panel->onClickStartHandle = onClickStartHandle;
+    PN_Over_Spawn(panel);
+    ctxUI->pn_over = panel;
+}
+
 // 关闭panel
 void APP_UI_Login_Close(CtxUI* ctxUI) {
     if (ctxUI->pn_login != NULL) {
@@ -143,12 +171,25 @@ void APP_UI_Login_Close(CtxUI* ctxUI) {
     }
 }
 
+void APP_UI_Over_Close(CtxUI* ctxUI) {
+    if (ctxUI->pn_over != NULL) {
+        free(ctxUI->pn_login);
+        ctxUI->pn_over = NULL;
+    }
+}
+
+bool APP_UI_Over_Click(CtxUI* ctxUI) {
+    if (ctxUI->pn_over != NULL) {
+        return ctxUI->pn_over->isClick;
+    }
+    return false;
+}
+
 bool APP_UI_Login_Click(CtxUI* ctxUI) {
     if (ctxUI->pn_login != NULL) {
         return ctxUI->pn_login->isClick;
     }
     return false;
 }
-
 
 #endif
