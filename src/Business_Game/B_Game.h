@@ -91,7 +91,7 @@ void B_Game_Tick(Ctx* ctx, float dt) {
             if (tower->bltSpawnTimer <= 0) {
                 E_Mst* mst = FindNearestMst(ctx, tower->pos, 100);
                 if (mst != NULL) {
-                    D_Blt_Spawn(ctx, 1, Vector2_New(0, 0), tower->pos);
+                    D_Blt_Spawn(ctx, 3, Vector2_New(0, 0), tower->pos);
                     tower->bltSpawnTimer = tower->bltSpawnInterval;
                 }
             }

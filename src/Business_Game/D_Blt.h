@@ -11,13 +11,12 @@ void D_Blt_Spawn(Ctx* ctx, int typeID, Vector2 moveAxis, Vector2 pos) {
     }
 }
 
-//blt向mst移动
-void D_Blt_Move(Ctx* ctx, E_Blt *blt, float dt) {
+// blt向mst移动
+void D_Blt_Move(Ctx* ctx, E_Blt* blt, float dt) {
     if (blt->isLive) {
         E_Blt_Move(blt, blt->moveAxis, dt);
         E_Mst* mst = FindNearestMst(ctx, blt->pos, blt->hurtRange);
         if (mst != NULL) {
-            // 这里可以写blt 和mst的交叉检测
             bool isInside = IsCirlceInsideCircle(blt->radius, mst->radius,
                                                  blt->pos, mst->pos);
             if (isInside) {
