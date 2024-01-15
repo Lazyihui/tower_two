@@ -52,7 +52,7 @@ void B_Game_Tick(Ctx* ctx, float dt) {
         E_Mst* mst = ctx->rp_mst->all[i];
         D_Mst_Remove(ctx, mst);
     }
-    
+
     E_Input* input = ctx->input;
 
     // cellToTower 点击cell打开panel
@@ -91,7 +91,8 @@ void B_Game_Tick(Ctx* ctx, float dt) {
             if (tower->bltSpawnTimer <= 0) {
                 E_Mst* mst = FindNearestMst(ctx, tower->pos, 100);
                 if (mst != NULL) {
-                    D_Blt_Spawn(ctx, 3, Vector2_New(0, 0), tower->pos);
+                    D_Blt_Spawn(ctx, tower->typeID, Vector2_New(0, 0),
+                                tower->pos);
                     tower->bltSpawnTimer = tower->bltSpawnInterval;
                 }
             }
@@ -101,14 +102,13 @@ void B_Game_Tick(Ctx* ctx, float dt) {
     // blt pos and moveAxis
     for (int i = 0; i < ctx->rp_blt->count; i++) {
         E_Blt* blt = ctx->rp_blt->all[i];
-        //blt move
+        // blt move
         D_Blt_Move(ctx, blt, dt);
-        //blt fade
+        // blt fade
         if (blt->isInside) {
             D_Blt_Fade(ctx);
         }
     }
-
 }
 
 // Draw

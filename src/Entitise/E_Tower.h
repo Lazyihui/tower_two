@@ -14,6 +14,8 @@ typedef struct E_Tower {
     bool isLive;
     float bltSpawnTimer;
     float bltSpawnInterval;
+
+    int hurt;
 } E_Tower;
 
 void E_Tower_Draw(E_Tower* tower) {

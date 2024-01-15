@@ -44,7 +44,7 @@ E_Mst* Factory_Create_Mst(Ctx* ctx, int typeID, Vector2 pos, Vector2 moveAxis) {
     return mst;
 }
 
-E_Tower* Factory_Create_Tower(Ctx* ctx, int typeID, Vector2 pos) {
+E_Tower* Factory_Create_Tower(Ctx* ctx, int typeID,Vector2 pos) {
     TM_Tower* tm = Template_GetTower(ctx->tpl, typeID);
     if (tm == NULL) {
         PlogNoArg("return NUll");
@@ -63,7 +63,7 @@ E_Tower* Factory_Create_Tower(Ctx* ctx, int typeID, Vector2 pos) {
     return tower;
 }
 
-E_Blt* Factory_Create_Blt(Ctx* ctx, int typeID, Vector2 moveAxis, Vector2 pos) {
+E_Blt* Factory_Create_Blt(Ctx* ctx, int typeID,Vector2 moveAxis, Vector2 pos) {
     TM_Blt* tm = Template_GetBlt(ctx->tpl, typeID);
     if (tm == NULL) {
         PlogNoArg("return NUll");

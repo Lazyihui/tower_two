@@ -3,7 +3,8 @@
 
 #include "import.h"
 
-void D_Tower_Spraw(Ctx* ctx, int typeID, Vector2 pos, int* outClickTowerID) {
+void D_Tower_Spraw(Ctx* ctx, int typeID, Vector2 pos, 
+                   int* outClickTowerID) {
 
     E_Tower* tower = Factory_Create_Tower(ctx, typeID, pos);
     if (tower != NULL) {
