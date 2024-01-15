@@ -14,8 +14,10 @@ void UI_Login_OnClicckStart() {
     B_Game_Enter(ctx);
 }
 void UI_Over_OnClicckStart() {
+    PlogNoArg("a\r\n");
     APP_UI_Over_Close(ctx->ctx_UI);
     ctx->gameStatus = GAME_STATUS_GAME;
+    B_Game_Enter(ctx);
 }
 int main() {
     ctx = (Ctx*)calloc(1, sizeof(Ctx));
@@ -29,7 +31,6 @@ int main() {
     ctx_Inti(ctx);
     ctxUIInit(ctx->ctx_UI);
     APP_UI_Login_Open(ctx->ctx_UI, &UI_Login_OnClicckStart);
-
     int towerTypes[3] = {1, 2, 3};
     GuiLoadStyleCandy();
     while (!WindowShouldClose()) {

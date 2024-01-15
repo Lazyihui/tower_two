@@ -160,6 +160,8 @@ void APP_UI_Over_Open(CtxUI* ctxUI, void (*onClickStartHandle)(void)) {
     PN_Over* panel = (PN_Over*)calloc(1, sizeof(PN_Over));
     panel->onClickStartHandle = onClickStartHandle;
     PN_Over_Spawn(panel);
+    PlogNoArg("a\r\n");
+
     ctxUI->pn_over = panel;
 }
 
