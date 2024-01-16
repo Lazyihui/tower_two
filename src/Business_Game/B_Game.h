@@ -15,7 +15,12 @@ void UI_PanelTower() {
 }
 
 void B_Game_Enter(Ctx* ctx) {
-
+    ctx->gameStatus = GAME_STATUS_GAME;
+    ctx->valuePlay = 10;
+    ctx->time = 0;
+    ctx->gold = 5;
+    ctx->mstSpawnTimer = 2;
+    ctx->mstSpawnInterval = 2;
     // 生成格子
     for (int y = -26; y <= 26; y += std_cell) {
         Vector2 pos = Vector2_New(-8, y);

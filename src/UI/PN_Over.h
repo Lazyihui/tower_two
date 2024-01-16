@@ -30,11 +30,11 @@ void PN_Over_Spawn(PN_Over* panel) {
 void PN_Over_Draw(PN_Over* panel) {
 
     Rectangle bgRect = RectangleNew(0, 0, 960, 540);
-    DrawRectangleRec(bgRect, YELLOW);
-
-    // GUI_Button_Draw(&panel->btn_Start);
-    panel->isClick = GuiButton(panel->rect_start, panel->txt_start);
-
+    DrawRectangleRec(bgRect, RED);
+    bool isClick=GuiButton(panel->rect_start, panel->txt_start);
+    if(isClick){
+        panel->onClickStartHandle();
+    }
 }
 
 #endif

@@ -10,14 +10,13 @@ static Ctx* ctx; // 静态区
 // 文本区
 void UI_Login_OnClicckStart() {
     APP_UI_Login_Close(ctx->ctx_UI);
-    ctx->gameStatus = GAME_STATUS_GAME;
     B_Game_Enter(ctx);
 }
+
 void UI_Over_OnClicckStart() {
     PlogNoArg("a\r\n");
     APP_UI_Over_Close(ctx->ctx_UI);
-    ctx->gameStatus = GAME_STATUS_GAME;
-    B_Game_Enter(ctx);
+    B_Login_Enter(ctx, &UI_Login_OnClicckStart);
 }
 int main() {
     ctx = (Ctx*)calloc(1, sizeof(Ctx));
@@ -30,9 +29,12 @@ int main() {
     //==== Enter ====
     ctx_Inti(ctx);
     ctxUIInit(ctx->ctx_UI);
-    APP_UI_Login_Open(ctx->ctx_UI, &UI_Login_OnClicckStart);
+
+    B_Login_Enter(ctx, &UI_Login_OnClicckStart);
+
     int towerTypes[3] = {1, 2, 3};
     GuiLoadStyleCandy();
+
     while (!WindowShouldClose()) {
 
         float dt = GetFrameTime();
@@ -53,8 +55,9 @@ int main() {
         } else if (ctx->gameStatus == GAME_STATUS_GAME) {
             D_Play_Tick(ctx, dt);
             B_Game_Tick(ctx, dt);
+
             if (ctx->valuePlay <= 0) {
-                ctx->gameStatus = GAME_STATUS_OVER;
+                B_Over_Enter(ctx);
             }
         } else if (ctx->gameStatus == GAME_STATUS_OVER) {
             APP_UI_Over_Open(ctx->ctx_UI, &UI_Over_OnClicckStart);
@@ -68,13 +71,6 @@ int main() {
             B_Game_Draw(ctx);
         } else if (ctx->gameStatus == GAME_STATUS_OVER) {
         }
-
-        // Rectangle a;
-        // a.height = 40;
-        // a.width = 300;
-        // a.x = 100;
-        // a.y = 100;
-        // float value=10;
 
         EndMode2D();
         // ==== Draw UI ====

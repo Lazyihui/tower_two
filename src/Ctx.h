@@ -46,8 +46,6 @@ typedef struct Ctx {
 
     // RP blt
     RP_Blt* rp_blt;
-    float bltSpawnTimer;
-    float bltSpawnInterval;
 
     // play
     float valuePlay;
@@ -96,8 +94,7 @@ void ctx_Inti(Ctx* ctx) {
     // RP mst
     RP_Mst* rp_mst = (RP_Mst*)calloc(1, sizeof(RP_Mst));
     RP_Mst_Init(rp_mst);
-    ctx->mstSpawnTimer = 2;
-    ctx->mstSpawnInterval = 2;
+  
     ctx->rp_mst = rp_mst;
 
     // RP tower
@@ -107,15 +104,11 @@ void ctx_Inti(Ctx* ctx) {
 
     // RP blt
     RP_Blt* rp_blt = (RP_Blt*)calloc(1, sizeof(RP_Blt));
-    ctx->bltSpawnInterval = 2;
-    ctx->bltSpawnTimer = 2;
     RP_Blt_Inti(rp_blt);
     ctx->rp_blt = rp_blt;
 
     // Play
-    ctx->valuePlay = 10;
-    ctx->time = 0;
-    ctx->gold = 5;
+   
 }
 
 void ctx_Free(Ctx* ctx) {
